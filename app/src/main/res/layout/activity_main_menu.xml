@@ -1,9 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="hu.falsyquiz.falsyquiz.Activities.MainMenuActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true">
+
+        <Button
+            android:id="@+id/mainMenuActivity_startButton"
+            android:layout_width="@dimen/mainMenuActivity_buttons_width"
+            android:layout_height="wrap_content"
+            android:text="@string/mainMenuActivity_startQuizButton"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/mainMenuActivity_buttons_marginBottom"/>
+
+        <Button
+            android:id="@+id/mainMenuActivity_resultsButton"
+            android:layout_width="@dimen/mainMenuActivity_buttons_width"
+            android:layout_height="wrap_content"
+            android:text="@string/mainMenuActivity_resultButton"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/mainMenuActivity_startButton"
+            android:layout_marginBottom="@dimen/mainMenuActivity_buttons_marginBottom"/>
+
+        <Button
+            android:id="@+id/mainMenuActivity_helpButton"
+            android:layout_width="@dimen/mainMenuActivity_buttons_width"
+            android:layout_height="wrap_content"
+            android:text="@string/mainMenuActivity_helpButton"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/mainMenuActivity_resultsButton"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>
