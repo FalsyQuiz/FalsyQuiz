@@ -1,11 +1,10 @@
 package hu.falsyquiz.falsyquiz.Activities;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import hu.falsyquiz.falsyquiz.R;
 
-public class QuestionActivity extends AppCompatActivity {
+public class QuestionActivity extends AbstractActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
