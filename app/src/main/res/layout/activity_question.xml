@@ -1,10 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="hu.falsyquiz.falsyquiz.Activities.QuestionActivity">
+    tools:context="hu.falsyquiz.falsyquiz.Activities.QuestionActivity" >
 
-</android.support.constraint.ConstraintLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:id="@+id/questionActivity_callButton"
+            android:src="@mipmap/ic_call_black_48dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:background="@null"/>
+
+        <ImageButton
+            android:id="@+id/questionActivity_surpriseButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:src="@mipmap/ic_insert_emoticon_black_48dp"
+            android:background="@null"/>
+
+        <ImageButton
+            android:id="@+id/questionActivity_fiftyButton"
+            android:src="@mipmap/ic_shortcut_5050"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:background="@null"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/questionActivity_questionText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"/>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true">
+
+        <Button
+            android:id="@+id/questionActivity_optionA_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/questionActivity_optionB_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/questionActivity_optionA_button"/>
+
+        <Button
+            android:id="@+id/questionActivity_optionC_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/questionActivity_optionA_button" />
+
+        <Button
+            android:id="@+id/questionActivity_optionD_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/questionActivity_optionC_button"
+            android:layout_below="@id/questionActivity_optionB_button"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>
