@@ -28,6 +28,9 @@ public class StorageModule {
         DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(context, DB_NAME);
         Database db = helper.getWritableDb();
 
+        /*DaoMaster.dropAllTables(db, true);
+        DaoMaster.createAllTables(db, false);*/
+
         return new DaoMaster(db).newSession();
     }
 
@@ -38,6 +41,7 @@ public class StorageModule {
     }
 
     @Provides
+    @Singleton
     public DataManager provideDataManager(DatabaseManager databaseManager) {
         return new DataManager(databaseManager);
     }

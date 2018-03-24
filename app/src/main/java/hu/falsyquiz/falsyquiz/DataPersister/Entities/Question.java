@@ -23,7 +23,6 @@ public class Question {
     public static final String OPTION_D = "D";
 
     @Id
-    @NotNull
     @Getter
     @Setter
     private Long id;
@@ -57,6 +56,10 @@ public class Question {
     @Getter
     @Setter
     private String answer;
+
+    @Setter
+    @Getter
+    private Boolean bonus;
 
     public Question() {
     }
