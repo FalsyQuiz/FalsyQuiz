@@ -27,7 +27,7 @@ public class MainMenuActivity extends AbstractActivity {
 
         initOnClickListeners();
 
-        if (dataManager.getConfigurationValue(Configuration.INSTALLED_KEY) == null) {
+        if (dataManager.getAllQuestions().isEmpty() || dataManager.getConfigurationValue(Configuration.INSTALLED_KEY) == null) {
             initQuestions();
             dataManager.createConfiguration(new Configuration(null, Configuration.INSTALLED_KEY, Configuration.INSTALLED_VALUE));
         }
