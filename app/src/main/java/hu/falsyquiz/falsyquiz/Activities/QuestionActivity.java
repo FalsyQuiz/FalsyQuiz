@@ -2,6 +2,7 @@ package hu.falsyquiz.falsyquiz.Activities;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -50,6 +51,9 @@ public class QuestionActivity extends AbstractActivity {
         questionList = dataManager.getAllQuestionsList();
         game = new Game();
         game.setLives(NUMBER_OF_LIVES);
+
+        initListeners();
+
         game();
     }
 
@@ -67,5 +71,43 @@ public class QuestionActivity extends AbstractActivity {
         optionB.setText(question.getOptionB());
         optionC.setText(question.getOptionC());
         optionD.setText(question.getOptionD());
+    }
+
+    private void initListeners() {
+        fifty.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fifty();
+            }
+        });
+    }
+
+    private void fifty() {
+        Random random = new Random();
+        int randomNumber1 = random.nextInt(4);
+        int randomNumber2 = random.nextInt(4);
+        while (randomNumber1 == randomNumber2) {
+            randomNumber2 = random.nextInt(4);
+        }
+        setButtonInvisible(randomNumber1);
+        setButtonInvisible(randomNumber2);
+        fifty.setVisibility(View.INVISIBLE);
+    }
+
+    private void setButtonInvisible(int buttonNumber) {
+        switch (buttonNumber) {
+            case 0:
+                optionA.setVisibility(View.INVISIBLE);
+                break;
+            case 1:
+                optionB.setVisibility(View.INVISIBLE);
+                break;
+            case 2:
+                optionC.setVisibility(View.INVISIBLE);
+                break;
+            case 3:
+                optionD.setVisibility(View.INVISIBLE);
+                break;
+        }
     }
 }
