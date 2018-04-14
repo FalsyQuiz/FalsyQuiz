@@ -1,3 +1,8 @@
+/*
+* Developers:
+* Vadász Péter
+* */
+
 package hu.falsyquiz.falsyquiz.Application;
 
 import android.app.Application;
