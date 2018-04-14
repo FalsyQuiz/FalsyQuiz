@@ -7,17 +7,14 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import java.util.List;
-import java.util.Random;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import hu.falsyquiz.falsyquiz.DataPersister.Entities.Game;
 import hu.falsyquiz.falsyquiz.DataPersister.Entities.Question;
+import hu.falsyquiz.falsyquiz.Game.GameReferee;
 import hu.falsyquiz.falsyquiz.R;
 import lombok.AllArgsConstructor;
 
-public class QuestionActivity extends AbstractActivity {
+public class QuestionActivity extends AbstractActivity implements GameReferee.GameRefereeListener {
 
     @AllArgsConstructor
     public class AnswerListener implements View.OnClickListener {
@@ -30,14 +27,13 @@ public class QuestionActivity extends AbstractActivity {
 
                 @Override
                 public void run() {
-                    checkAnswer(answer);
+                    answerQuestion(answer);
                 }
 
             }, TIME_BEFORE_RESULT);
         }
     }
 
-    public static final int NUMBER_OF_LIVES = 5;
     public static final int TIME_BEFORE_RESULT = 1500;
 
     @BindView(R.id.questionActivity_questionText)
@@ -58,9 +54,7 @@ public class QuestionActivity extends AbstractActivity {
     @BindView(R.id.questionActivity_fiftyButton)
     ImageButton fifty;
 
-    private List<Question> questionList;
-    private Game game;
-    private Question question;
+    private GameReferee gameReferee;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,14 +62,8 @@ public class QuestionActivity extends AbstractActivity {
         setContentView(R.layout.activity_question);
         ButterKnife.bind(this);
 
-        questionList = dataManager.getAllQuestionsList();
-        game = new Game();
-        game.setLives(NUMBER_OF_LIVES);
-        game();
-    }
+        gameReferee = new GameReferee(this, dataManager.getAllQuestions());
 
-    private void game() {
-        printQuestion();
         initOnClickListeners();
     }
 
@@ -87,70 +75,76 @@ public class QuestionActivity extends AbstractActivity {
 
     }
 
-    private void checkAnswer(String answer) {
-
-        //correct answer
-        if (answer.equals(question.getAnswer())) {
-            game.setCorrectAnswers(game.getCorrectAnswers() + 1);
-            switch (answer) {
-                case Question.OPTION_A:
-                    optionA.setBackgroundColor(getResources().getColor(R.color.QuestionActivity_correctAnswerColor));
-                    break;
-                case Question.OPTION_B:
-                    optionB.setBackgroundColor(getResources().getColor(R.color.QuestionActivity_correctAnswerColor));
-                    break;
-                case Question.OPTION_C:
-                    optionC.setBackgroundColor(getResources().getColor(R.color.QuestionActivity_correctAnswerColor));
-                    break;
-                case Question.OPTION_D:
-                    optionD.setBackgroundColor(getResources().getColor(R.color.QuestionActivity_correctAnswerColor));
-                    break;
-            }
-        }
-        //not correct answer
-        else {
-            game.setLives( game.getLives() - 1 );
-            switch (answer) {
-                case Question.OPTION_A:
-                    optionA.setBackgroundColor(getResources().getColor(R.color.QuestionActivity_wrongAnswerColor));
-                    break;
-                case Question.OPTION_B:
-                    optionB.setBackgroundColor(getResources().getColor(R.color.QuestionActivity_wrongAnswerColor));
-                    break;
-                case Question.OPTION_C:
-                    optionC.setBackgroundColor(getResources().getColor(R.color.QuestionActivity_wrongAnswerColor));
-                    break;
-                case Question.OPTION_D:
-                    optionD.setBackgroundColor(getResources().getColor(R.color.QuestionActivity_wrongAnswerColor));
-                    break;
-            }
-            switch (question.getAnswer()) {
-                case Question.OPTION_A:
-                    optionA.setBackgroundColor(getResources().getColor(R.color.QuestionActivity_correctAnswerColor));
-                    break;
-                case Question.OPTION_B:
-                    optionB.setBackgroundColor(getResources().getColor(R.color.QuestionActivity_correctAnswerColor));
-                    break;
-                case Question.OPTION_C:
-                    optionC.setBackgroundColor(getResources().getColor(R.color.QuestionActivity_correctAnswerColor));
-                    break;
-                case Question.OPTION_D:
-                    optionD.setBackgroundColor(getResources().getColor(R.color.QuestionActivity_correctAnswerColor));
-                    break;
-            }
-        }
+    private void answerQuestion(String answer) {
+        gameReferee.answerQuestion(answer);
     }
 
-
-    private void printQuestion() {
-        Random random = new Random();
-        int num = random.nextInt(questionList.size());
-        question = questionList.remove(num);
-
+    @Override
+    public void printQuestion(Question question) {
         questionText.setText(question.getQuestion());
         optionA.setText(question.getOptionA());
         optionB.setText(question.getOptionB());
         optionC.setText(question.getOptionC());
         optionD.setText(question.getOptionD());
+    }
+
+    @Override
+    public void gameOver() {
+
+    }
+
+    @Override
+    public void win() {
+
+    }
+
+    @Override
+    public void correctAnswer(String answer) {
+        switch (answer) {
+            case Question.OPTION_A:
+                optionA.setBackgroundColor(getResources().getColor(R.color.QuestionActivity_correctAnswerColor));
+                break;
+            case Question.OPTION_B:
+                optionB.setBackgroundColor(getResources().getColor(R.color.QuestionActivity_correctAnswerColor));
+                break;
+            case Question.OPTION_C:
+                optionC.setBackgroundColor(getResources().getColor(R.color.QuestionActivity_correctAnswerColor));
+                break;
+            case Question.OPTION_D:
+                optionD.setBackgroundColor(getResources().getColor(R.color.QuestionActivity_correctAnswerColor));
+                break;
+        }
+    }
+
+    @Override
+    public void wrongAnswer(String correctAnswer, String wrongAnswer) {
+        switch (wrongAnswer) {
+            case Question.OPTION_A:
+                optionA.setBackgroundColor(getResources().getColor(R.color.QuestionActivity_wrongAnswerColor));
+                break;
+            case Question.OPTION_B:
+                optionB.setBackgroundColor(getResources().getColor(R.color.QuestionActivity_wrongAnswerColor));
+                break;
+            case Question.OPTION_C:
+                optionC.setBackgroundColor(getResources().getColor(R.color.QuestionActivity_wrongAnswerColor));
+                break;
+            case Question.OPTION_D:
+                optionD.setBackgroundColor(getResources().getColor(R.color.QuestionActivity_wrongAnswerColor));
+                break;
+        }
+        switch (correctAnswer) {
+            case Question.OPTION_A:
+                optionA.setBackgroundColor(getResources().getColor(R.color.QuestionActivity_correctAnswerColor));
+                break;
+            case Question.OPTION_B:
+                optionB.setBackgroundColor(getResources().getColor(R.color.QuestionActivity_correctAnswerColor));
+                break;
+            case Question.OPTION_C:
+                optionC.setBackgroundColor(getResources().getColor(R.color.QuestionActivity_correctAnswerColor));
+                break;
+            case Question.OPTION_D:
+                optionD.setBackgroundColor(getResources().getColor(R.color.QuestionActivity_correctAnswerColor));
+                break;
+        }
     }
 }
