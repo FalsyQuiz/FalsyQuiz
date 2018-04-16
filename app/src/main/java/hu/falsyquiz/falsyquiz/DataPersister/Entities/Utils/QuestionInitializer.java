@@ -15,8 +15,26 @@ public class QuestionInitializer {
 
     public static void initDefaultQuestions() {
         defaultQuestions = new ArrayList<>();
-        defaultQuestions.add(new Question((Long)null, "Legyen X és Y független azonos eloszlású valószínűségi változó, X~N(5,9), Y~N(6, 16), mennyi a várható értéke X+3Y-nak?)", "5", "23", "egyéb", "egyik sem", Question.OPTION_B, false));
-        defaultQuestions.add(new Question((Long)null, "Milyen alakú az INSERT utasítás Oracle-ben?", "INSERT INTO [adatbázis név][tábla név]", "INSERT [táblanév]", "INSERT INTO [tábla név] VALUES (értékek)" , "Attól függ...", Question.OPTION_D, true));
+
+        defaultQuestions.add(new Question((Long) null,
+                "Legyen X és Y független azonos eloszlású valószínűségi változó, X~N(5,9), Y~N(6, 16), mennyi a várható értéke X+3Y-nak?)",
+                "5", "23", "egyéb", "egyik sem",
+                Question.OPTION_B, false));
+
+        defaultQuestions.add(new Question((Long )null,
+                "Milyen alakú az INSERT utasítás Oracle-ben?",
+                "INSERT INTO [adatbázis név][tábla név]", "INSERT [táblanév]", "INSERT INTO [tábla név] VALUES (értékek)" , "Attól függ...",
+                Question.OPTION_D, true));
+
+        defaultQuestions.add(new Question((Long )null,
+                "Milyen típusú garbage collectort használ a C++?",
+                "Stop the world", "Mark and sweep", "Nincs garbage collector" , "Egyéb",
+                Question.OPTION_C, false));
+
+        defaultQuestions.add(new Question((Long )null,
+                "Mire jó a friend kulcsszó C++-ban?",
+                "Segítségével egy függvény hozzáférhete gy osztály privát adattagjaihoz", "Semmire, ilyen nincs C++-ban", "Publikussá teszi egy osztály privát adattagjait" , "Attól függ...",
+                Question.OPTION_D, false));
 
     }
 

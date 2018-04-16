@@ -27,6 +27,8 @@ public class MainMenuActivity extends AbstractActivity {
 
         initOnClickListeners();
 
+        //clearQuestions();
+
         if (dataManager.getAllQuestions().isEmpty() || dataManager.getConfigurationValue(Configuration.INSTALLED_KEY) == null) {
             initQuestions();
             dataManager.createConfiguration(new Configuration(null, Configuration.INSTALLED_KEY, Configuration.INSTALLED_VALUE));
@@ -48,5 +50,9 @@ public class MainMenuActivity extends AbstractActivity {
         for (Question question : QuestionInitializer.getDefaultQuestions()) {
             dataManager.createQuestion(question);
         }
+    }
+
+    private void clearQuestions() {
+        dataManager.deleteAllQuestions();
     }
 }
