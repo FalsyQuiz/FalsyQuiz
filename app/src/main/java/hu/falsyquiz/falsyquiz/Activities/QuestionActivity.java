@@ -23,6 +23,7 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
 
         @Override
         public void onClick(View view) {
+            setButtonsEnability(!ENABLED);
             new Handler().postDelayed(new Runnable() {
 
                 @Override
@@ -35,6 +36,7 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
     }
 
     public static final int TIME_BEFORE_RESULT = 1500;
+    public static boolean ENABLED = true;
 
     @BindView(R.id.questionActivity_questionText)
     TextView questionText;
@@ -72,7 +74,6 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
         optionB.setOnClickListener(new AnswerListener(Question.OPTION_B));
         optionC.setOnClickListener(new AnswerListener(Question.OPTION_C));
         optionD.setOnClickListener(new AnswerListener(Question.OPTION_D));
-
     }
 
     private void answerQuestion(String answer) {
@@ -146,5 +147,21 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
                 optionD.setBackgroundColor(getResources().getColor(R.color.QuestionActivity_correctAnswerColor));
                 break;
         }
+    }
+
+    @Override
+    public void setButtonsEnability(boolean enabled) {
+        optionA.setEnabled(enabled);
+        optionB.setEnabled(enabled);
+        optionC.setEnabled(enabled);
+        optionD.setEnabled(enabled);
+        if ( !gameReferee.getGame().getUsedFifty() && enabled ) {
+            fifty.setEnabled(enabled);
+        } else if ( !enabled ) {
+            fifty.setEnabled(enabled);
+        }
+//        if ( !enabled ) {
+//
+//        }
     }
 }

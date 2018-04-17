@@ -1,10 +1,16 @@
 package hu.falsyquiz.falsyquiz.Game;
 
+import android.os.Handler;
+
 import java.util.List;
 import java.util.Random;
 
 import hu.falsyquiz.falsyquiz.DataPersister.Entities.Game;
 import hu.falsyquiz.falsyquiz.DataPersister.Entities.Question;
+import lombok.Getter;
+
+import static hu.falsyquiz.falsyquiz.Activities.QuestionActivity.ENABLED;
+import static hu.falsyquiz.falsyquiz.Activities.QuestionActivity.TIME_BEFORE_RESULT;
 
 /**
  *
@@ -18,6 +24,7 @@ public class GameReferee {
         void win();
         void correctAnswer(String correctAnswer);
         void wrongAnswer(String correctAnswer, String wrongAnswer);
+        void setButtonsEnability(boolean enabled);
     }
 
     public static final int NUMBER_OF_LIVES = 5;
@@ -28,6 +35,7 @@ public class GameReferee {
 
     private List<Question> questions;
     private Question actualQuestion;
+    @Getter
     private Game game;
 
     public GameReferee(GameRefereeListener listener, List<Question> questions) {
@@ -72,6 +80,15 @@ public class GameReferee {
 
     private void next() {
         //TODO continue game
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                listener.setButtonsEnability(ENABLED);
+                newQuestion();
+            }
+
+        }, TIME_BEFORE_RESULT);
     }
 
 }
