@@ -1,6 +1,7 @@
 /*
 * Developers:
 * Vadász Péter
+* Gecse Viktória
 * */
 
 package hu.falsyquiz.falsyquiz.Application;
