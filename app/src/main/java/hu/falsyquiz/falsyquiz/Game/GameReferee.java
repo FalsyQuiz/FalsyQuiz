@@ -1,16 +1,11 @@
 package hu.falsyquiz.falsyquiz.Game;
 
-import android.os.Handler;
-
 import java.util.List;
 import java.util.Random;
 
 import hu.falsyquiz.falsyquiz.DataPersister.Entities.Game;
 import hu.falsyquiz.falsyquiz.DataPersister.Entities.Question;
 import lombok.Getter;
-
-import static hu.falsyquiz.falsyquiz.Activities.QuestionActivity.ENABLED;
-import static hu.falsyquiz.falsyquiz.Activities.QuestionActivity.TIME_BEFORE_RESULT;
 
 /**
  *
@@ -33,12 +28,13 @@ public class GameReferee {
     private GameRefereeListener listener;
 
     private List<Question> questions;
-    @Getter
     private Question actualQuestion;
     @Getter
     private Game game;
 
     public GameReferee(GameRefereeListener listener, List<Question> questions) {
+        this.game.setUsedFifty(false);
+        this.game.setUsedPhone(false);
         this.listener = listener;
         this.questions = questions;
         game = new Game();

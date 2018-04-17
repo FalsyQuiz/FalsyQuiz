@@ -1,12 +1,7 @@
 package hu.falsyquiz.falsyquiz.Activities;
 
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.SpannableStringBuilder;
-import android.text.style.StyleSpan;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -177,5 +172,4 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
         }
         surprise.setEnabled(enabled);
     }
-
 }
