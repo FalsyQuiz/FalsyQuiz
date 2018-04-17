@@ -24,6 +24,7 @@ public class GameReferee {
         void win();
         void correctAnswer(String correctAnswer);
         void wrongAnswer(String correctAnswer, String wrongAnswer);
+        void setButtonsEnability(boolean enabled);
     }
 
     public static final int NUMBER_OF_LIVES = 5;
@@ -33,7 +34,6 @@ public class GameReferee {
     private GameRefereeListener listener;
 
     private List<Question> questions;
-    @Getter
     private Question actualQuestion;
     @Getter
     private Game game;
@@ -80,6 +80,15 @@ public class GameReferee {
 
     private void next() {
         //TODO continue game
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                listener.setButtonsEnability(ENABLED);
+                newQuestion();
+            }
+
+        }, TIME_BEFORE_RESULT);
     }
 
 }
