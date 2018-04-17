@@ -1,11 +1,14 @@
 package hu.falsyquiz.falsyquiz.Activities;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -62,6 +65,9 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
     @BindView(R.id.questionActivity_surpriseButton)
     ImageButton surprise;
 
+    @BindView(R.id.questionActivity_timeLeft_text)
+    TextView timeLeft;
+
     private GameReferee gameReferee;
 
     @Override
@@ -73,6 +79,8 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
         gameReferee = new GameReferee(this, dataManager.getAllQuestions());
 
         initOnClickListeners();
+
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
     }
 
     private void initOnClickListeners() {
@@ -153,6 +161,18 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
                 optionD.setBackgroundColor(getResources().getColor(R.color.QuestionActivity_correctAnswerColor));
                 break;
         }
+    }
+
+    @Override
+    public void tick(long timeLeft) {
+        long timeLeftSec = timeLeft / 1000;
+        this.timeLeft.setText(timeLeftSec < 10 ? "0" + timeLeftSec : timeLeftSec + "");
+    }
+
+    @Override
+    public void timeIsOver() {
+        timeLeft.setText(R.string.questionActivity_timeIsOver_text);
+        setButtonsEnability(!ENABLED);
     }
 
     public void setButtonsEnability(boolean enabled) {
