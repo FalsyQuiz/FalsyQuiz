@@ -56,6 +56,12 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
     @BindView(R.id.questionActivity_fiftyButton)
     ImageButton fifty;
 
+    @BindView(R.id.questionActivity_callButton)
+    ImageButton phone;
+
+    @BindView(R.id.questionActivity_surpriseButton)
+    ImageButton surprise;
+
     private GameReferee gameReferee;
 
     @Override
@@ -160,8 +166,11 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
         } else if ( !enabled ) {
             fifty.setEnabled(enabled);
         }
-//        if ( !enabled ) {
-//
-//        }
+        if ( !gameReferee.getGame().getUsedPhone() && enabled ) {
+            phone.setEnabled(enabled);
+        } else if ( !enabled ) {
+            phone.setEnabled(enabled);
+        }
+        surprise.setEnabled(enabled);
     }
 }

@@ -39,6 +39,8 @@ public class GameReferee {
     private Game game;
 
     public GameReferee(GameRefereeListener listener, List<Question> questions) {
+        this.game.setUsedFifty(false);
+        this.game.setUsedPhone(false);
         this.listener = listener;
         this.questions = questions;
         game = new Game();
