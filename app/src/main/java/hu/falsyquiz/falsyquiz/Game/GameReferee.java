@@ -19,7 +19,6 @@ public class GameReferee {
         void win();
         void correctAnswer(String correctAnswer);
         void wrongAnswer(String correctAnswer, String wrongAnswer);
-        void setButtonsEnability(boolean enabled);
     }
 
     public static final int NUMBER_OF_LIVES = 5;

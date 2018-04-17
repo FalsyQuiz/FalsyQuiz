@@ -155,7 +155,6 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
         }
     }
 
-    @Override
     public void setButtonsEnability(boolean enabled) {
         optionA.setEnabled(enabled);
         optionB.setEnabled(enabled);
