@@ -1,7 +1,12 @@
 package hu.falsyquiz.falsyquiz.Activities;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.style.StyleSpan;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -55,6 +60,12 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
 
     @BindView(R.id.questionActivity_fiftyButton)
     ImageButton fifty;
+
+    @BindView(R.id.questionActivity_callButton)
+    ImageButton phone;
+
+    @BindView(R.id.questionActivity_surpriseButton)
+    ImageButton surprise;
 
     private GameReferee gameReferee;
 
@@ -149,7 +160,6 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
         }
     }
 
-    @Override
     public void setButtonsEnability(boolean enabled) {
         optionA.setEnabled(enabled);
         optionB.setEnabled(enabled);
@@ -160,8 +170,12 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
         } else if ( !enabled ) {
             fifty.setEnabled(enabled);
         }
-//        if ( !enabled ) {
-//
-//        }
+        if ( !gameReferee.getGame().getUsedPhone() && enabled ) {
+            phone.setEnabled(enabled);
+        } else if ( !enabled ) {
+            phone.setEnabled(enabled);
+        }
+        surprise.setEnabled(enabled);
     }
+
 }
