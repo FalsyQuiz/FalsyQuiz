@@ -33,9 +33,35 @@ public class QuestionInitializer {
 
         defaultQuestions.add(new Question((Long )null,
                 "Mire jó a friend kulcsszó C++-ban?",
-                "Segítségével egy függvény hozzáférhete gy osztály privát adattagjaihoz", "Semmire, ilyen nincs C++-ban", "Publikussá teszi egy osztály privát adattagjait" , "Attól függ...",
+                "Segítségével egy függvény hozzáférhet egy osztály privát adattagjaihoz", "Semmire, ilyen nincs C++-ban", "Publikussá teszi egy osztály privát adattagjait" , "Attól függ...",
                 Question.OPTION_D, false));
 
+        defaultQuestions.add(new Question((Long )null,
+                "Mennyi a beszúró rendezés műveletigénye?",
+                "n * n", "n * log n", "n * n * n" , "konstans",
+                Question.OPTION_A, false));
+
+        defaultQuestions.add(new Question((Long )null,
+                "Milyen kódot képes végrehajtani a Java JVM-je?",
+                "tárgykód", "bájtkód", "forráskód", "egyiket sem",
+                Question.OPTION_B, false));
+
+        defaultQuestions.add(new Question((Long )null,
+                "Hány byte-on tárol egy double-t a C++?",
+                "4", "6", "8", "implementáció-függő",
+                Question.OPTION_D, false));
+
+        defaultQuestions.add(new Question((Long )null,
+                "Mitől válik egy osztály absztrakttá C++-ban?",
+                "Nincs paraméter nélküli konstruktora.", "Van virtuális függvénye.",
+                "Van tisztán virtuális függvénye.", "Van statikus metódusa.",
+                Question.OPTION_C, false));
+
+        defaultQuestions.add(new Question((Long )null,
+                "Van többszörös öröklődés a Java nyelvben?",
+                "Nincs.", "Van.",
+                "Attól függ...", "Lehet.",
+                Question.OPTION_A, false));
     }
 
     public static List<Question> getDefaultQuestions() {
