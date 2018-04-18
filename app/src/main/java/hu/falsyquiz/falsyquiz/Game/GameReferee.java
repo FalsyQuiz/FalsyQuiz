@@ -11,7 +11,7 @@ import lombok.Getter;
  *
  */
 
-public class GameReferee {
+public class GameReferee implements Timer.TimerListener {
 
     public interface GameRefereeListener {
         void printQuestion(Question question);
@@ -19,26 +19,34 @@ public class GameReferee {
         void win();
         void correctAnswer(String correctAnswer);
         void wrongAnswer(String correctAnswer, String wrongAnswer);
+        void tick(long timeLeft);
+        void timeIsOver();
     }
 
     public static final int NUMBER_OF_LIVES = 5;
     public static final int BONUS_LIFE = 1;
     public static final int MINUS_LIFE = 1;
 
+    public static final boolean FIFTY_USED = true;
+    public static final boolean PHONE_USED = true;
+
     private GameRefereeListener listener;
 
     private List<Question> questions;
     private Question actualQuestion;
+
     @Getter
     private Game game;
 
+    private Timer timer;
+
     public GameReferee(GameRefereeListener listener, List<Question> questions) {
-        this.game.setUsedFifty(false);
-        this.game.setUsedPhone(false);
         this.listener = listener;
         this.questions = questions;
         game = new Game();
         game.setLives(NUMBER_OF_LIVES);
+        game.setUsedFifty(!FIFTY_USED);
+        game.setUsedPhone(!PHONE_USED);
         play();
     }
 
@@ -46,13 +54,20 @@ public class GameReferee {
         newQuestion();
     }
 
+    private void startTimer(long time) {
+        timer = new Timer(time, this);
+        timer.start();
+    }
+
     private void newQuestion() {
         Random random = new Random();
         actualQuestion = questions.remove(random.nextInt(questions.size()));
         listener.printQuestion(actualQuestion);
+        startTimer(Timer.DEFAULT_NORMAL_TIME);
     }
 
     public void answerQuestion(String answer) {
+        timer.stop();
        if (actualQuestion.getAnswer().equals(answer)) {
            game.setLives(game.getLives() + (actualQuestion.getBonus() ? BONUS_LIFE : 0));
            listener.correctAnswer(answer);
@@ -76,6 +91,18 @@ public class GameReferee {
 
     private void next() {
         //TODO continue game
+    }
+
+    @Override
+    public void tick(long timeLeft) {
+        listener.tick(timeLeft);
+    }
+
+    @Override
+    public void end() {
+        game.setLives(game.getLives() - MINUS_LIFE);
+        listener.timeIsOver();
+        checkGameState();
     }
 
 }

@@ -8,6 +8,7 @@
     tools:context="hu.falsyquiz.falsyquiz.Activities.QuestionActivity" >
 
     <RelativeLayout
+        android:id="@+id/questionActivity_helpPanel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -36,6 +37,14 @@
             android:background="@null"/>
 
     </RelativeLayout>
+
+    <TextView
+        android:id="@+id/questionActivity_timeLeft_text"
+        android:text="@string/questionActivity_timeLeft_text_defaultValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/questionActivity_helpPanel" />
 
     <TextView
         android:id="@+id/questionActivity_questionText"
