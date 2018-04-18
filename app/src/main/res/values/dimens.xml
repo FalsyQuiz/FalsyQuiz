@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="mainMenuActivity_buttons_marginBottom">20dp</dimen>
-    <dimen name="mainMenuActivity_buttons_width">200dp</dimen>
+    <dimen name="mainMenuActivity_logo_width">100dp</dimen>
+    <dimen name="mainMenuActivity_logo_heigth">100dp</dimen>
+    <dimen name="mainMenuActivity_logo_topMargin">100dp</dimen>
+    <dimen name="navHeader_logo_width">40dp</dimen>
+    <dimen name="navHeader_logo_height">40dp</dimen>
 </resources>
