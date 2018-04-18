@@ -2,6 +2,7 @@
 * Developers:
 * Vadász Péter
 * Gecse Viktória
+* Szalai Norbert
 * */
 
 package hu.falsyquiz.falsyquiz.Application;
