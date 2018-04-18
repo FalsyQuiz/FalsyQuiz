@@ -8,10 +8,16 @@
     android:orientation="vertical"
     android:gravity="bottom">
 
+    <ImageView
+        android:id="@+id/navHeader_applicationImage"
+        android:layout_width="@dimen/navHeader_logo_width"
+        android:layout_height="@dimen/navHeader_logo_height"
+        android:src="@mipmap/launcher" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="My header title"
+        android:text="@string/app_name"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
 
 </LinearLayout>

@@ -2,16 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/mainMenuActivity_startButton"
             android:icon="@mipmap/ic_play_circle_outline_black_24dp"
             android:title="@string/mainMenuActivity_startQuizButton" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_launcher_background"
+            android:id="@+id/mainMenuActivity_resultsButton"
+            android:icon="@mipmap/ic_assessment_black_24dp"
             android:title="@string/mainMenuActivity_resultButton" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_launcher_background"
+            android:id="@+id/mainMenuActivity_helpButton"
+            android:icon="@mipmap/ic_help_black_24dp"
             android:title="@string/mainMenuActivity_helpButton" />
     </group>
 </menu>
