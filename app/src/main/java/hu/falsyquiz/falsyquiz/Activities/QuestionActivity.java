@@ -90,6 +90,12 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
         optionB.setOnClickListener(new AnswerListener(Question.OPTION_B));
         optionC.setOnClickListener(new AnswerListener(Question.OPTION_C));
         optionD.setOnClickListener(new AnswerListener(Question.OPTION_D));
+        fifty.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fifty();
+            }
+        });
     }
 
     private void answerQuestion(String answer) {
@@ -103,15 +109,6 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
         optionB.setText(question.getOptionB());
         optionC.setText(question.getOptionC());
         optionD.setText(question.getOptionD());
-    }
-
-    private void initListeners() {
-        fifty.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                fifty();
-            }
-        });
     }
 
     private void fifty() {
@@ -154,6 +151,9 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
 
     @Override
     public void correctAnswer(String answer) {
+
+        setButtonsVisible();
+
         switch (answer) {
             case Question.OPTION_A:
                 optionA.setBackgroundColor(getResources().getColor(R.color.QuestionActivity_correctAnswerColor));
@@ -172,6 +172,9 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
 
     @Override
     public void wrongAnswer(String correctAnswer, String wrongAnswer) {
+
+        setButtonsVisible();
+
         switch (wrongAnswer) {
             case Question.OPTION_A:
                 optionA.setBackgroundColor(getResources().getColor(R.color.QuestionActivity_wrongAnswerColor));
@@ -200,6 +203,13 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
                 optionD.setBackgroundColor(getResources().getColor(R.color.QuestionActivity_correctAnswerColor));
                 break;
         }
+    }
+
+    private void setButtonsVisible() {
+        optionA.setVisibility(View.VISIBLE);
+        optionB.setVisibility(View.VISIBLE);
+        optionC.setVisibility(View.VISIBLE);
+        optionD.setVisibility(View.VISIBLE);
     }
 
     @Override
