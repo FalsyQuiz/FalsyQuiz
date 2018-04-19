@@ -14,6 +14,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context="hu.falsyquiz.falsyquiz.Activities.MainMenuActivity">
+
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
+
         <ImageView
                 android:id="@+id/mainMenuActivity_applicationImage"
                 android:layout_width="@dimen/mainMenuActivity_logo_width"
@@ -26,11 +35,11 @@
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="@color/colorPrimary"
-            android:shadowColor="@color/text_shadow_white"
-            android:shadowDx="-2"
-            android:shadowDy="-2"
-            android:shadowRadius="1"
+            android:textColor="@color/white"
+            android:shadowColor="@color/colorPrimary"
+            android:shadowDx="-4"
+            android:shadowDy="-4"
+            android:shadowRadius="2"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:text="@string/app_name"/>
