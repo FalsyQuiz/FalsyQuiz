@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.util.Random;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import hu.falsyquiz.falsyquiz.DataPersister.Entities.Question;
@@ -88,6 +90,12 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
         optionB.setOnClickListener(new AnswerListener(Question.OPTION_B));
         optionC.setOnClickListener(new AnswerListener(Question.OPTION_C));
         optionD.setOnClickListener(new AnswerListener(Question.OPTION_D));
+        fifty.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fifty();
+            }
+        });
     }
 
     private void answerQuestion(String answer) {
@@ -103,6 +111,34 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
         optionD.setText(question.getOptionD());
     }
 
+    private void fifty() {
+        Random random = new Random();
+        int randomNumber1 = random.nextInt(4);
+        int randomNumber2 = random.nextInt(4);
+        while (randomNumber1 == randomNumber2) {
+            randomNumber2 = random.nextInt(4);
+        }
+        setButtonInvisible(randomNumber1);
+        setButtonInvisible(randomNumber2);
+        fifty.setVisibility(View.INVISIBLE);
+    }
+
+    private void setButtonInvisible(int buttonNumber) {
+        switch (buttonNumber) {
+            case 0:
+                optionA.setVisibility(View.INVISIBLE);
+                break;
+            case 1:
+                optionB.setVisibility(View.INVISIBLE);
+                break;
+            case 2:
+                optionC.setVisibility(View.INVISIBLE);
+                break;
+            case 3:
+                optionD.setVisibility(View.INVISIBLE);
+                break;
+        }
+    }
     @Override
     public void gameOver() {
 
@@ -115,6 +151,9 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
 
     @Override
     public void correctAnswer(String answer) {
+
+        setButtonsVisible();
+
         switch (answer) {
             case Question.OPTION_A:
                 optionA.setBackgroundColor(getResources().getColor(R.color.QuestionActivity_correctAnswerColor));
@@ -133,6 +172,9 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
 
     @Override
     public void wrongAnswer(String correctAnswer, String wrongAnswer) {
+
+        setButtonsVisible();
+
         switch (wrongAnswer) {
             case Question.OPTION_A:
                 optionA.setBackgroundColor(getResources().getColor(R.color.QuestionActivity_wrongAnswerColor));
@@ -161,6 +203,13 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
                 optionD.setBackgroundColor(getResources().getColor(R.color.QuestionActivity_correctAnswerColor));
                 break;
         }
+    }
+
+    private void setButtonsVisible() {
+        optionA.setVisibility(View.VISIBLE);
+        optionB.setVisibility(View.VISIBLE);
+        optionC.setVisibility(View.VISIBLE);
+        optionD.setVisibility(View.VISIBLE);
     }
 
     @Override
