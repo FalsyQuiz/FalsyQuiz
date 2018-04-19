@@ -1,6 +1,8 @@
 <resources>
-    <string name="app_name">FalsyQuiz</string>
+    <string name="app_name">Falsy Quiz</string>
     <string name="mainMenuActivity_startQuizButton" type="id">Új játék</string>
     <string name="mainMenuActivity_resultButton">Eredmények</string>
     <string name="mainMenuActivity_helpButton">Súgó</string>
+    <string name="questionActivity_timeLeft_text_defaultValue">--</string>
+    <string name="questionActivity_timeIsOver_text">OVER</string>
 </resources>
