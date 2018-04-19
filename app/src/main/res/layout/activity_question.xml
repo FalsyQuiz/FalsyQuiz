@@ -62,26 +62,34 @@
         <Button
             android:id="@+id/questionActivity_optionA_button"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:background="@color/QuestionActivity_buttonColor"
+            android:layout_margin="@dimen/OptionButtonMargin"  />
 
         <Button
             android:id="@+id/questionActivity_optionB_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/questionActivity_optionA_button"/>
+            android:layout_toRightOf="@id/questionActivity_optionA_button"
+            android:background="@color/QuestionActivity_buttonColor"
+            android:layout_margin="@dimen/OptionButtonMargin" />
 
         <Button
             android:id="@+id/questionActivity_optionC_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/questionActivity_optionA_button" />
+            android:layout_below="@id/questionActivity_optionA_button"
+            android:background="@color/QuestionActivity_buttonColor"
+            android:layout_margin="@dimen/OptionButtonMargin" />
 
         <Button
             android:id="@+id/questionActivity_optionD_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/questionActivity_optionC_button"
-            android:layout_below="@id/questionActivity_optionB_button"/>
+            android:layout_below="@id/questionActivity_optionB_button"
+            android:background="@color/QuestionActivity_buttonColor"
+            android:layout_margin="@dimen/OptionButtonMargin"  />
 
     </RelativeLayout>
 

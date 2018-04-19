@@ -3,6 +3,7 @@ package hu.falsyquiz.falsyquiz.Activities;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -77,6 +78,7 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
         ButterKnife.bind(this);
 
         gameReferee = new GameReferee(this, dataManager.getAllQuestions());
+        gameReferee.play();
 
         initOnClickListeners();
 
@@ -105,7 +107,6 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
 
     @Override
     public void gameOver() {
-
     }
 
     @Override
@@ -174,12 +175,16 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
         timeLeft.setText(R.string.questionActivity_timeIsOver_text);
         setButtonsEnability(!ENABLED);
     }
-
+    @Override
     public void setButtonsEnability(boolean enabled) {
         optionA.setEnabled(enabled);
         optionB.setEnabled(enabled);
         optionC.setEnabled(enabled);
         optionD.setEnabled(enabled);
+        optionA.setBackgroundColor(getResources().getColor(R.color.QuestionActivity_buttonColor));
+        optionB.setBackgroundColor(getResources().getColor(R.color.QuestionActivity_buttonColor));
+        optionC.setBackgroundColor(getResources().getColor(R.color.QuestionActivity_buttonColor));
+        optionD.setBackgroundColor(getResources().getColor(R.color.QuestionActivity_buttonColor));
         if ( !gameReferee.getGame().getUsedFifty() && enabled ) {
             fifty.setEnabled(enabled);
         } else if ( !enabled ) {

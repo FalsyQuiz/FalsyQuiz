@@ -1,5 +1,7 @@
 package hu.falsyquiz.falsyquiz.Game;
 
+import android.os.Handler;
+
 import java.util.List;
 import java.util.Random;
 
@@ -13,6 +15,8 @@ import lombok.Getter;
 
 public class GameReferee implements Timer.TimerListener {
 
+    private static final long TIME_BEFORE_NEXT_QUESTION = 1500;
+
     public interface GameRefereeListener {
         void printQuestion(Question question);
         void gameOver();
@@ -21,6 +25,7 @@ public class GameReferee implements Timer.TimerListener {
         void wrongAnswer(String correctAnswer, String wrongAnswer);
         void tick(long timeLeft);
         void timeIsOver();
+        void setButtonsEnability(boolean enabled);
     }
 
     public static final int NUMBER_OF_LIVES = 5;
@@ -47,10 +52,9 @@ public class GameReferee implements Timer.TimerListener {
         game.setLives(NUMBER_OF_LIVES);
         game.setUsedFifty(!FIFTY_USED);
         game.setUsedPhone(!PHONE_USED);
-        play();
     }
 
-    private void play() {
+    public void play() {
         newQuestion();
     }
 
@@ -64,6 +68,7 @@ public class GameReferee implements Timer.TimerListener {
         actualQuestion = questions.remove(random.nextInt(questions.size()));
         listener.printQuestion(actualQuestion);
         startTimer(Timer.DEFAULT_NORMAL_TIME);
+        listener.setButtonsEnability(true);
     }
 
     public void answerQuestion(String answer) {
@@ -85,7 +90,15 @@ public class GameReferee implements Timer.TimerListener {
         } else if (game.gameOver()) {
             listener.gameOver();
         } else {
-            next();
+            new Handler().postDelayed(new Runnable() {
+
+                @Override
+                public void run() {
+                    newQuestion();
+                }
+
+            }, TIME_BEFORE_NEXT_QUESTION);
+
         }
     }
 
