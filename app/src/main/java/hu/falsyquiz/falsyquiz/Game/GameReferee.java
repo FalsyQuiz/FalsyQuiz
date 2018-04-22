@@ -26,6 +26,7 @@ public class GameReferee implements Timer.TimerListener {
         void tick(long timeLeft);
         void timeIsOver();
         void setButtonsEnability(boolean enabled);
+        void showLives(int lives);
     }
 
     public static final int NUMBER_OF_LIVES = 5;
@@ -52,6 +53,7 @@ public class GameReferee implements Timer.TimerListener {
         game.setLives(NUMBER_OF_LIVES);
         game.setUsedFifty(!FIFTY_USED);
         game.setUsedPhone(!PHONE_USED);
+        listener.showLives(game.getLives());
     }
 
     public void play() {
@@ -80,7 +82,7 @@ public class GameReferee implements Timer.TimerListener {
            game.setLives(game.getLives() - MINUS_LIFE);
            listener.wrongAnswer(actualQuestion.getAnswer(), answer);
        }
-
+       listener.showLives(game.getLives());
        checkGameState();
     }
 
@@ -115,6 +117,7 @@ public class GameReferee implements Timer.TimerListener {
     public void end() {
         game.setLives(game.getLives() - MINUS_LIFE);
         listener.timeIsOver();
+        listener.showLives(game.getLives());
         checkGameState();
     }
 
