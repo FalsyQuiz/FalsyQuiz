@@ -71,6 +71,9 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
     @BindView(R.id.questionActivity_timeLeft_text)
     TextView timeLeft;
 
+    @BindView(R.id.questionActivity_livesText)
+    TextView livesText;
+
     private GameReferee gameReferee;
 
     @Override
@@ -245,5 +248,12 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
             phone.setEnabled(enabled);
         }
         surprise.setEnabled(enabled);
+    }
+
+    @Override
+    public void showLives(int lives) {
+        livesText.setText("");
+        livesText.append(Integer.toString(lives) + "×");
+        livesText.setCompoundDrawablesWithIntrinsicBounds(0,0,R.mipmap.ic_favorite_black_18dp,0);
     }
 }
