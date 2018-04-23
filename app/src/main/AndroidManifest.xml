@@ -10,7 +10,8 @@
         android:roundIcon="@mipmap/launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.SplashActivity">
+        <activity
+            android:name=".Activities.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,7 +22,11 @@
             android:name=".Activities.MainMenuActivity" />
         <activity
             android:name=".Activities.QuestionActivity"
-            android:parentActivityName=".Activities.MainMenuActivity"/>
+            android:parentActivityName=".Activities.MainMenuActivity"
+            android:screenOrientation="landscape"/>
+        <activity
+            android:name=".Activities.GameOverActivity"
+            android:parentActivityName=".Activities.MainMenuActivity" />
     </application>
 
 </manifest>
