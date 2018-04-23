@@ -35,6 +35,7 @@ public class GameReferee implements Timer.TimerListener {
 
     public static final boolean FIFTY_USED = true;
     public static final boolean PHONE_USED = true;
+    public static final boolean SURPRISE_USED = true;
 
     private GameRefereeListener listener;
 
@@ -50,9 +51,11 @@ public class GameReferee implements Timer.TimerListener {
         this.listener = listener;
         this.questions = questions;
         game = new Game();
-        game.setLives(NUMBER_OF_LIVES);
+        game.setId(0L);
+        game.setLives(1);
         game.setUsedFifty(!FIFTY_USED);
         game.setUsedPhone(!PHONE_USED);
+        game.setUsedSurprise(!SURPRISE_USED);
         listener.showLives(game.getLives());
     }
 
@@ -74,7 +77,8 @@ public class GameReferee implements Timer.TimerListener {
     }
 
     public void answerQuestion(String answer) {
-        timer.stop();
+
+       timer.stop();
        if (actualQuestion.getAnswer().equals(answer)) {
            game.setLives(game.getLives() + (actualQuestion.getBonus() ? BONUS_LIFE : 0));
            listener.correctAnswer(answer);
@@ -87,6 +91,7 @@ public class GameReferee implements Timer.TimerListener {
     }
 
     private void checkGameState() {
+        game.setNumOfQuestions(game.getNumOfQuestions() + 1);
         if (!game.gameOver() && questions.isEmpty()) {
             listener.win();
         } else if (game.gameOver()) {
@@ -96,7 +101,8 @@ public class GameReferee implements Timer.TimerListener {
 
                 @Override
                 public void run() {
-                    newQuestion();
+                    game.setCorrectAnswers(game.getCorrectAnswers() + 1);
+                    next();
                 }
 
             }, TIME_BEFORE_NEXT_QUESTION);
@@ -105,7 +111,7 @@ public class GameReferee implements Timer.TimerListener {
     }
 
     private void next() {
-        //TODO continue game
+        newQuestion();
     }
 
     @Override
