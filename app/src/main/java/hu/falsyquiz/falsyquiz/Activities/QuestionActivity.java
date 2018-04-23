@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.Snackbar;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -73,6 +74,9 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
 
     @BindView(R.id.questionActivity_livesText)
     TextView livesText;
+
+    @BindView(R.id.questionActivity_infoText)
+    TextView infoText;
 
     private GameReferee gameReferee;
 
@@ -255,5 +259,14 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
         livesText.setText("");
         livesText.append(Integer.toString(lives) + "×");
         livesText.setCompoundDrawablesWithIntrinsicBounds(0,0,R.mipmap.ic_favorite_black_18dp,0);
+    }
+
+    public void setInfoText(String text) {
+        infoText.setText(text);
+        AlphaAnimation textFade = new AlphaAnimation(1.0f, 0.0f);
+        infoText.startAnimation(textFade);
+        textFade.setDuration(1000);
+        textFade.setFillAfter(true);
+        textFade.setStartOffset(2000 + textFade.getStartOffset());
     }
 }

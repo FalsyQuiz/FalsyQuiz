@@ -60,7 +60,16 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"/>
 
+    <TextView
+        android:id="@+id/questionActivity_infoText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_above="@id/questionActivity_buttonsArea"/>
+
     <RelativeLayout
+        android:id="@+id/questionActivity_buttonsArea"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
