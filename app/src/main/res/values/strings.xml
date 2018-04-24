@@ -7,6 +7,9 @@
     <string name="questionActivity_timeIsOver_text">OVER</string>
     <string name="questionActivity_bonusQuestion_text">BÓNUSZKÉRDÉS!</string>
     <string name="questionActivity_bonusLife_text">+1 ÉLET</string>
+    <string name="gameOverActivity_failed_text">Sajnáljuk ez most nem jött össze!! :(</string>
+    <string name="gameOverActivity_percentageText">Annak a valószínűsége, hogy sikeresen teljesítened a PTI szakot: </string>
+    <string name="gameOverActivity_win_text">Gratulálunk!! :)</string>
 
     <string-array name="correctAnswer_text_array">
         <item>Helyes válasz!</item>
@@ -19,4 +22,5 @@
         <item>Ezt azért illene tudni...</item>
         <item>Ej, ej, ebből így nem lesz diploma!</item>
     </string-array>
+
 </resources>

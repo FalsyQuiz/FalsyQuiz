@@ -22,12 +22,19 @@ import hu.falsyquiz.falsyquiz.R;
 
 public class MainMenuActivity extends AbstractActivity{
 
+    public static final boolean MENU_ITEM_CHECKED = true;
+
     private DrawerLayout mDrawerLayout;
+
+    @BindView(R.id.nav_view)
+    NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
+        ButterKnife.bind(this);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitleTextColor(getResources().getColor(R.color.white));
@@ -36,21 +43,8 @@ public class MainMenuActivity extends AbstractActivity{
 
 
         mDrawerLayout = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(
-                new NavigationView.OnNavigationItemSelectedListener() {
-                    @Override
-                    public boolean onNavigationItemSelected(MenuItem menuItem) {
-                        menuItem.setChecked(true);
-                        // close drawer when item is tapped
-                        mDrawerLayout.closeDrawers();
-                        if (menuItem.getTitle().equals(getResources().getString(R.string.mainMenuActivity_startQuizButton)) ) {
-                            startActivity(new Intent(MainMenuActivity.this, QuestionActivity.class));
-                        }
-                        return true;
-                    }
-                });
-        //clearQuestions();
+
+        initMainMenuEventListeners();
 
         if (dataManager.getAllQuestions().isEmpty() || dataManager.getConfigurationValue(Configuration.INSTALLED_KEY) == null) {
             initQuestions();
@@ -65,8 +59,33 @@ public class MainMenuActivity extends AbstractActivity{
         }
     }
 
+    private void initMainMenuEventListeners() {
+        navigationView.bringToFront();
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+
+            @Override
+            public boolean onNavigationItemSelected( MenuItem item) {
+
+                item.setChecked(MENU_ITEM_CHECKED);
+                mDrawerLayout.closeDrawers();
+
+                switch (item.getItemId()) {
+                    case R.id.mainMenuActivity_start:
+                        showQuestionActivity();
+                        break;
+                    }
+
+                return true;
+            }
+        });
+    }
+
     private void clearQuestions() {
         dataManager.deleteAllQuestions();
+    }
+
+    private void showQuestionActivity() {
+        startActivity(new Intent(MainMenuActivity.this, QuestionActivity.class));
     }
 
     @Override

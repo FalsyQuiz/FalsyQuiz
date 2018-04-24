@@ -1,5 +1,6 @@
 package hu.falsyquiz.falsyquiz.Activities;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
@@ -13,6 +14,8 @@ import android.widget.TextView;
 import org.w3c.dom.Text;
 
 import java.util.Random;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -93,7 +96,6 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
 
         initOnClickListeners();
 
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
     }
 
     private void initOnClickListeners() {
@@ -152,6 +154,9 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
     }
     @Override
     public void gameOver() {
+        Intent intent = new Intent(this, GameOverActivity.class);
+        intent.putExtra(GameOverActivity.EXTRA_GAMER_KEY, gameReferee.getGame());
+        clearAndStartActivity(intent);
     }
 
     @Override
