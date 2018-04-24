@@ -1,26 +1,25 @@
 package hu.falsyquiz.falsyquiz.Activities;
 
-import android.content.pm.ActivityInfo;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.design.widget.Snackbar;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import hu.falsyquiz.falsyquiz.DataPersister.Entities.InfoTextMessage;
 import hu.falsyquiz.falsyquiz.DataPersister.Entities.Question;
 import hu.falsyquiz.falsyquiz.Game.GameReferee;
 import hu.falsyquiz.falsyquiz.R;
 import lombok.AllArgsConstructor;
 
-public class QuestionActivity extends AbstractActivity implements GameReferee.GameRefereeListener {
+public class QuestionActivity extends AbstractActivity implements GameReferee.GameRefereeListener, InfoTextMessage.MessageListener {
 
     @AllArgsConstructor
     public class AnswerListener implements View.OnClickListener {
@@ -74,6 +73,9 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
     @BindView(R.id.questionActivity_livesText)
     TextView livesText;
 
+    @BindView(R.id.questionActivity_infoText)
+    TextView infoText;
+
     private GameReferee gameReferee;
 
     @Override
@@ -81,13 +83,13 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question);
         ButterKnife.bind(this);
+        InfoTextMessage.initTextMessages(this);
 
         gameReferee = new GameReferee(this, dataManager.getAllQuestions());
         gameReferee.play();
 
         initOnClickListeners();
 
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
     }
 
     private void initOnClickListeners() {
@@ -95,12 +97,21 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
         optionB.setOnClickListener(new AnswerListener(Question.OPTION_B));
         optionC.setOnClickListener(new AnswerListener(Question.OPTION_C));
         optionD.setOnClickListener(new AnswerListener(Question.OPTION_D));
+
         fifty.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 fifty();
             }
         });
+
+        surprise.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                surprise();
+            }
+        });
+
     }
 
     private void answerQuestion(String answer) {
@@ -144,8 +155,36 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
                 break;
         }
     }
+
+    private void surprise() {
+        //get random szopatás...
+        Random random = new Random();
+        int randomNumber = random.nextInt(5);
+        switch (randomNumber) {
+            case 0:
+
+                break;
+            case 1:
+
+                break;
+            case 2:
+
+                break;
+            case 3:
+
+                break;
+            case 4:
+
+                break;
+            //...
+        }
+    }
+
     @Override
     public void gameOver() {
+        Intent intent = new Intent(this, GameOverActivity.class);
+        intent.putExtra(GameOverActivity.EXTRA_GAMER_KEY, gameReferee.getGame());
+        clearAndStartActivity(intent);
     }
 
     @Override
@@ -255,5 +294,20 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
         livesText.setText("");
         livesText.append(Integer.toString(lives) + "×");
         livesText.setCompoundDrawablesWithIntrinsicBounds(0,0,R.mipmap.ic_favorite_black_18dp,0);
+    }
+
+    @Override
+    public void setInfoText(String text) {
+        infoText.setText(text);
+        AlphaAnimation textFade = new AlphaAnimation(1.0f, 0.0f);
+        infoText.startAnimation(textFade);
+        textFade.setDuration(1000);
+        textFade.setFillAfter(true);
+        textFade.setStartOffset(2000 + textFade.getStartOffset());
+    }
+
+    @Override
+    public AbstractActivity getActivity() {
+        return this;
     }
 }

@@ -5,8 +5,12 @@ import android.os.Handler;
 import java.util.List;
 import java.util.Random;
 
+import hu.falsyquiz.falsyquiz.Activities.AbstractActivity;
 import hu.falsyquiz.falsyquiz.DataPersister.Entities.Game;
 import hu.falsyquiz.falsyquiz.DataPersister.Entities.Question;
+
+import hu.falsyquiz.falsyquiz.DataPersister.Entities.InfoTextMessage;
+import hu.falsyquiz.falsyquiz.R;
 import lombok.Getter;
 
 /**
@@ -27,6 +31,7 @@ public class GameReferee implements Timer.TimerListener {
         void timeIsOver();
         void setButtonsEnability(boolean enabled);
         void showLives(int lives);
+        void setInfoText(String text);
     }
 
     public static final int NUMBER_OF_LIVES = 5;
@@ -35,6 +40,7 @@ public class GameReferee implements Timer.TimerListener {
 
     public static final boolean FIFTY_USED = true;
     public static final boolean PHONE_USED = true;
+    public static final boolean SURPRISE_USED = true;
 
     private GameRefereeListener listener;
 
@@ -50,9 +56,11 @@ public class GameReferee implements Timer.TimerListener {
         this.listener = listener;
         this.questions = questions;
         game = new Game();
-        game.setLives(NUMBER_OF_LIVES);
+        game.setId(0L);
+        game.setLives(1);
         game.setUsedFifty(!FIFTY_USED);
         game.setUsedPhone(!PHONE_USED);
+        game.setUsedSurprise(!SURPRISE_USED);
         listener.showLives(game.getLives());
     }
 
@@ -69,24 +77,32 @@ public class GameReferee implements Timer.TimerListener {
         Random random = new Random();
         actualQuestion = questions.remove(random.nextInt(questions.size()));
         listener.printQuestion(actualQuestion);
+        if(actualQuestion.getBonus()) listener.setInfoText(InfoTextMessage
+                .getTextMessage(R.string.questionActivity_bonusQuestion_text));
         startTimer(Timer.DEFAULT_NORMAL_TIME);
         listener.setButtonsEnability(true);
     }
 
     public void answerQuestion(String answer) {
-        timer.stop();
+
+       timer.stop();
        if (actualQuestion.getAnswer().equals(answer)) {
-           game.setLives(game.getLives() + (actualQuestion.getBonus() ? BONUS_LIFE : 0));
+           if (actualQuestion.getBonus()) {
+               game.setLives(game.getLives() + BONUS_LIFE);
+               listener.setInfoText(InfoTextMessage.getTextMessage(R.string.questionActivity_bonusLife_text));
+           } else listener.setInfoText(InfoTextMessage.getCorrectAnswerMessage());
            listener.correctAnswer(answer);
        } else {
            game.setLives(game.getLives() - MINUS_LIFE);
            listener.wrongAnswer(actualQuestion.getAnswer(), answer);
+           listener.setInfoText(InfoTextMessage.getWrongAnswerMessage());
        }
        listener.showLives(game.getLives());
        checkGameState();
     }
 
     private void checkGameState() {
+        game.setNumOfQuestions(game.getNumOfQuestions() + 1);
         if (!game.gameOver() && questions.isEmpty()) {
             listener.win();
         } else if (game.gameOver()) {
@@ -96,7 +112,8 @@ public class GameReferee implements Timer.TimerListener {
 
                 @Override
                 public void run() {
-                    newQuestion();
+                    game.setCorrectAnswers(game.getCorrectAnswers() + 1);
+                    next();
                 }
 
             }, TIME_BEFORE_NEXT_QUESTION);
@@ -105,7 +122,7 @@ public class GameReferee implements Timer.TimerListener {
     }
 
     private void next() {
-        //TODO continue game
+        newQuestion();
     }
 
     @Override
