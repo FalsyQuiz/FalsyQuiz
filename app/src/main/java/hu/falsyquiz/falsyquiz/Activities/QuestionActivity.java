@@ -1,21 +1,15 @@
 package hu.falsyquiz.falsyquiz.Activities;
 
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import java.util.Random;
-
-import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -103,12 +97,21 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
         optionB.setOnClickListener(new AnswerListener(Question.OPTION_B));
         optionC.setOnClickListener(new AnswerListener(Question.OPTION_C));
         optionD.setOnClickListener(new AnswerListener(Question.OPTION_D));
+
         fifty.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 fifty();
             }
         });
+
+        surprise.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                surprise();
+            }
+        });
+
     }
 
     private void answerQuestion(String answer) {
@@ -152,6 +155,31 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
                 break;
         }
     }
+
+    private void surprise() {
+        //get random szopatás...
+        Random random = new Random();
+        int randomNumber = random.nextInt(5);
+        switch (randomNumber) {
+            case 0:
+
+                break;
+            case 1:
+
+                break;
+            case 2:
+
+                break;
+            case 3:
+
+                break;
+            case 4:
+
+                break;
+            //...
+        }
+    }
+
     @Override
     public void gameOver() {
         Intent intent = new Intent(this, GameOverActivity.class);
