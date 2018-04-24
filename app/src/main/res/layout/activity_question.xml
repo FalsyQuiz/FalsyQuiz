@@ -47,13 +47,29 @@
         android:layout_below="@id/questionActivity_helpPanel" />
 
     <TextView
+        android:id="@+id/questionActivity_livesText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/questionActivity_timeLeft_text" />
+
+    <TextView
         android:id="@+id/questionActivity_questionText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"/>
 
+    <TextView
+        android:id="@+id/questionActivity_infoText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_above="@id/questionActivity_buttonsArea"/>
+
     <RelativeLayout
+        android:id="@+id/questionActivity_buttonsArea"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -62,26 +78,34 @@
         <Button
             android:id="@+id/questionActivity_optionA_button"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:background="@color/QuestionActivity_buttonColor"
+            android:layout_margin="@dimen/OptionButtonMargin"  />
 
         <Button
             android:id="@+id/questionActivity_optionB_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/questionActivity_optionA_button"/>
+            android:layout_toRightOf="@id/questionActivity_optionA_button"
+            android:background="@color/QuestionActivity_buttonColor"
+            android:layout_margin="@dimen/OptionButtonMargin" />
 
         <Button
             android:id="@+id/questionActivity_optionC_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/questionActivity_optionA_button" />
+            android:layout_below="@id/questionActivity_optionA_button"
+            android:background="@color/QuestionActivity_buttonColor"
+            android:layout_margin="@dimen/OptionButtonMargin" />
 
         <Button
             android:id="@+id/questionActivity_optionD_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/questionActivity_optionC_button"
-            android:layout_below="@id/questionActivity_optionB_button"/>
+            android:layout_below="@id/questionActivity_optionB_button"
+            android:background="@color/QuestionActivity_buttonColor"
+            android:layout_margin="@dimen/OptionButtonMargin"  />
 
     </RelativeLayout>
 

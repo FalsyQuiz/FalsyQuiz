@@ -1,25 +1,24 @@
 package hu.falsyquiz.falsyquiz.Activities;
 
-import android.content.pm.ActivityInfo;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
-
+import java.util.Random;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import hu.falsyquiz.falsyquiz.DataPersister.Entities.InfoTextMessage;
 import hu.falsyquiz.falsyquiz.DataPersister.Entities.Question;
 import hu.falsyquiz.falsyquiz.Game.GameReferee;
 import hu.falsyquiz.falsyquiz.R;
 import lombok.AllArgsConstructor;
 
-public class QuestionActivity extends AbstractActivity implements GameReferee.GameRefereeListener {
+public class QuestionActivity extends AbstractActivity implements GameReferee.GameRefereeListener, InfoTextMessage.MessageListener {
 
     @AllArgsConstructor
     public class AnswerListener implements View.OnClickListener {
@@ -85,6 +84,12 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
     @BindView(R.id.questionActivity_timeLeft_text)
     TextView timeLeft;
 
+    @BindView(R.id.questionActivity_livesText)
+    TextView livesText;
+
+    @BindView(R.id.questionActivity_infoText)
+    TextView infoText;
+
     private GameReferee gameReferee;
 
     @Override
@@ -92,12 +97,13 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question);
         ButterKnife.bind(this);
+        InfoTextMessage.initTextMessages(this);
 
         gameReferee = new GameReferee(this, dataManager.getAllQuestions());
+        gameReferee.play();
 
         initOnClickListeners();
 
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
     }
 
     private void initOnClickListeners() {
@@ -106,6 +112,12 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
         optionC.setOnClickListener(new AnswerListener(Question.OPTION_C));
         optionD.setOnClickListener(new AnswerListener(Question.OPTION_D));
         phone.setOnClickListener(new PhoneCallListener());
+        fifty.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fifty();
+            }
+        });
     }
 
     private void answerQuestion(String answer) {
@@ -123,9 +135,39 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
         optionD.setText(question.getOptionD());
     }
 
+    private void fifty() {
+        Random random = new Random();
+        int randomNumber1 = random.nextInt(4);
+        int randomNumber2 = random.nextInt(4);
+        while (randomNumber1 == randomNumber2) {
+            randomNumber2 = random.nextInt(4);
+        }
+        setButtonInvisible(randomNumber1);
+        setButtonInvisible(randomNumber2);
+        fifty.setVisibility(View.INVISIBLE);
+    }
+
+    private void setButtonInvisible(int buttonNumber) {
+        switch (buttonNumber) {
+            case 0:
+                optionA.setVisibility(View.INVISIBLE);
+                break;
+            case 1:
+                optionB.setVisibility(View.INVISIBLE);
+                break;
+            case 2:
+                optionC.setVisibility(View.INVISIBLE);
+                break;
+            case 3:
+                optionD.setVisibility(View.INVISIBLE);
+                break;
+        }
+    }
     @Override
     public void gameOver() {
-
+        Intent intent = new Intent(this, GameOverActivity.class);
+        intent.putExtra(GameOverActivity.EXTRA_GAMER_KEY, gameReferee.getGame());
+        clearAndStartActivity(intent);
     }
 
     @Override
@@ -135,6 +177,9 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
 
     @Override
     public void correctAnswer(String answer) {
+
+        setButtonsVisible();
+
         switch (answer) {
             case Question.OPTION_A:
                 optionA.setBackgroundColor(getResources().getColor(R.color.QuestionActivity_correctAnswerColor));
@@ -153,6 +198,9 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
 
     @Override
     public void wrongAnswer(String correctAnswer, String wrongAnswer) {
+
+        setButtonsVisible();
+
         switch (wrongAnswer) {
             case Question.OPTION_A:
                 optionA.setBackgroundColor(getResources().getColor(R.color.QuestionActivity_wrongAnswerColor));
@@ -181,6 +229,13 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
                 optionD.setBackgroundColor(getResources().getColor(R.color.QuestionActivity_correctAnswerColor));
                 break;
         }
+    }
+
+    private void setButtonsVisible() {
+        optionA.setVisibility(View.VISIBLE);
+        optionB.setVisibility(View.VISIBLE);
+        optionC.setVisibility(View.VISIBLE);
+        optionD.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -212,12 +267,16 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
         timeLeft.setText(R.string.questionActivity_timeIsOver_text);
         setButtonsEnability(!ENABLED);
     }
-
+    @Override
     public void setButtonsEnability(boolean enabled) {
         optionA.setEnabled(enabled);
         optionB.setEnabled(enabled);
         optionC.setEnabled(enabled);
         optionD.setEnabled(enabled);
+        optionA.setBackgroundColor(getResources().getColor(R.color.QuestionActivity_buttonColor));
+        optionB.setBackgroundColor(getResources().getColor(R.color.QuestionActivity_buttonColor));
+        optionC.setBackgroundColor(getResources().getColor(R.color.QuestionActivity_buttonColor));
+        optionD.setBackgroundColor(getResources().getColor(R.color.QuestionActivity_buttonColor));
         if ( !gameReferee.getGame().getUsedFifty() && enabled ) {
             fifty.setEnabled(enabled);
         } else if ( !enabled ) {
@@ -229,5 +288,27 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
             phone.setEnabled(enabled);
         }
         surprise.setEnabled(enabled);
+    }
+
+    @Override
+    public void showLives(int lives) {
+        livesText.setText("");
+        livesText.append(Integer.toString(lives) + "×");
+        livesText.setCompoundDrawablesWithIntrinsicBounds(0,0,R.mipmap.ic_favorite_black_18dp,0);
+    }
+
+    @Override
+    public void setInfoText(String text) {
+        infoText.setText(text);
+        AlphaAnimation textFade = new AlphaAnimation(1.0f, 0.0f);
+        infoText.startAnimation(textFade);
+        textFade.setDuration(1000);
+        textFade.setFillAfter(true);
+        textFade.setStartOffset(2000 + textFade.getStartOffset());
+    }
+
+    @Override
+    public AbstractActivity getActivity() {
+        return this;
     }
 }
