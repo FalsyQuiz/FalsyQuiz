@@ -118,6 +118,14 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
                 fifty();
             }
         });
+
+        surprise.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                surprise();
+            }
+        });
+
     }
 
     private void answerQuestion(String answer) {
@@ -163,6 +171,31 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
                 break;
         }
     }
+
+    private void surprise() {
+        //get random szopatás...
+        Random random = new Random();
+        int randomNumber = random.nextInt(5);
+        switch (randomNumber) {
+            case 0:
+
+                break;
+            case 1:
+
+                break;
+            case 2:
+
+                break;
+            case 3:
+
+                break;
+            case 4:
+
+                break;
+            //...
+        }
+    }
+
     @Override
     public void gameOver() {
         Intent intent = new Intent(this, GameOverActivity.class);
