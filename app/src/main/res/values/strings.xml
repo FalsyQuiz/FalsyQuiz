@@ -23,4 +23,11 @@
         <item>Ej, ej, ebből így nem lesz diploma!</item>
     </string-array>
 
+    <string-array name="phoneCall_text_array">
+        <item>Biztos hogy ez a jó válasz!</item>
+        <item>Fogalmam sincs, de azért tippelek neked egyet.</item>
+        <item>Talán ez a jó válasz, de lehet hogy nem.</item>
+        <item>Ez nagyon könnyű! Ezt hogy nem tudtad?</item>
+    </string-array>
+
 </resources>

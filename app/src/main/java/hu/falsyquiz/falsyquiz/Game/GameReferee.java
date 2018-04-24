@@ -39,7 +39,7 @@ public class GameReferee implements Timer.TimerListener {
     public static final int NUMBER_OF_LIVES = 5;
     public static final int BONUS_LIFE = 1;
     public static final int MINUS_LIFE = 1;
-    public static final int PHONE_SUCCESS_THRESHOLD = 80;
+    public static final int PHONE_SUCCESS_THRESHOLD = 50;
 
     public static final boolean FIFTY_USED = true;
     public static final boolean PHONE_USED = true;
@@ -114,6 +114,7 @@ public class GameReferee implements Timer.TimerListener {
             );
         } else listener.phoneCallShowAnswer(actualQuestion.getAnswer());
         game.setUsedPhone(true);
+        listener.setInfoText(InfoTextMessage.getPhoneCallMessage());
     }
 
     private void checkGameState() {
