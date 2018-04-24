@@ -1,6 +1,7 @@
 package hu.falsyquiz.falsyquiz.Application;
 
 import android.app.Application;
+import android.content.Context;
 
 import com.facebook.stetho.Stetho;
 
@@ -38,4 +39,5 @@ public class BaseApplication extends Application {
     private void initializeStetho() {
         Stetho.initializeWithDefaults(this);
     }
+
 }
