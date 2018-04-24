@@ -1,21 +1,14 @@
 package hu.falsyquiz.falsyquiz.Activities;
 
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Vibrator;
-import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import java.util.Random;
-
-import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -158,11 +151,12 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
     }
 
     private void surprise() {
+        //get random szopatás...
         Random random = new Random();
         int randomNumber = random.nextInt(5);
         switch (randomNumber) {
             case 0:
-                vibrate(2000);
+
                 break;
             case 1:
 
@@ -179,13 +173,6 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
             //...
         }
     }
-
-    //can be public, depending on where we need to use this method
-    private void vibrate(int milliseconds) {
-        Vibrator v = (Vibrator) getSystemService(this.VIBRATOR_SERVICE);
-        v.vibrate(milliseconds);
-    }
-
 
     @Override
     public void gameOver() {
