@@ -1,33 +1,32 @@
 package hu.falsyquiz.falsyquiz.DataPersister.Entities;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+import hu.falsyquiz.falsyquiz.Activities.AbstractActivity;
+import hu.falsyquiz.falsyquiz.R;
+
 public class InfoTextMessage {
+
+    public interface MessageListener {
+        AbstractActivity getActivity();
+    }
+
     private static List<String> correctAnswerMessages;
     private static List<String> wrongAnswerMessages;
     private static Random rnd;
-
-    public static final String BONUS_QUESTION_TEXT = "BÓNUSZKÉRDÉS!";
-    public static final String BONUS_LIFE_TEXT = "+1 ÉLET";
+    private static MessageListener messageListener;
 
     private static void initializeTextMessages() {
-        correctAnswerMessages = new ArrayList<>();
-        wrongAnswerMessages = new ArrayList<>();
+        correctAnswerMessages = new ArrayList<>(Arrays.asList(getTextMessageArray(R.array.correctAnswer_text_array)));
+        wrongAnswerMessages = new ArrayList<>(Arrays.asList(getTextMessageArray(R.array.wrongAnswer_text_array)));
         rnd = new Random();
-
-        correctAnswerMessages.add("Helyes válasz!");
-        correctAnswerMessages.add("Szép volt!");
-        correctAnswerMessages.add("Hajrá, csak így tovább!");
-
-        wrongAnswerMessages.add("Rossz válasz!");
-        wrongAnswerMessages.add("Ezt azért illene tudni...");
-        wrongAnswerMessages.add("Ej, ej, ebből így nem lesz diploma!");
-
     }
 
-    public static void initTextMessages() {
+    public static void initTextMessages(MessageListener messageListener) {
+        InfoTextMessage.messageListener = messageListener;
         if (correctAnswerMessages == null) {
             initializeTextMessages();
         }
@@ -39,6 +38,14 @@ public class InfoTextMessage {
 
     public static String getWrongAnswerMessage() {
         return wrongAnswerMessages.get(rnd.nextInt(wrongAnswerMessages.size()));
+    }
+
+    public static String getTextMessage(int id) {
+        return messageListener.getActivity().getResources().getString(id);
+    }
+
+    public static String[] getTextMessageArray(int id) {
+        return messageListener.getActivity().getResources().getStringArray(id);
     }
 
 

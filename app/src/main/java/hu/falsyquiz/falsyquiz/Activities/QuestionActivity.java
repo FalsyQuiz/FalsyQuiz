@@ -16,12 +16,13 @@ import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import hu.falsyquiz.falsyquiz.DataPersister.Entities.InfoTextMessage;
 import hu.falsyquiz.falsyquiz.DataPersister.Entities.Question;
 import hu.falsyquiz.falsyquiz.Game.GameReferee;
 import hu.falsyquiz.falsyquiz.R;
 import lombok.AllArgsConstructor;
 
-public class QuestionActivity extends AbstractActivity implements GameReferee.GameRefereeListener {
+public class QuestionActivity extends AbstractActivity implements GameReferee.GameRefereeListener, InfoTextMessage.MessageListener {
 
     @AllArgsConstructor
     public class AnswerListener implements View.OnClickListener {
@@ -85,6 +86,7 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question);
         ButterKnife.bind(this);
+        InfoTextMessage.initTextMessages(this);
 
         gameReferee = new GameReferee(this, dataManager.getAllQuestions());
         gameReferee.play();
@@ -261,6 +263,7 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
         livesText.setCompoundDrawablesWithIntrinsicBounds(0,0,R.mipmap.ic_favorite_black_18dp,0);
     }
 
+    @Override
     public void setInfoText(String text) {
         infoText.setText(text);
         AlphaAnimation textFade = new AlphaAnimation(1.0f, 0.0f);
@@ -268,5 +271,10 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
         textFade.setDuration(1000);
         textFade.setFillAfter(true);
         textFade.setStartOffset(2000 + textFade.getStartOffset());
+    }
+
+    @Override
+    public AbstractActivity getActivity() {
+        return this;
     }
 }

@@ -5,10 +5,12 @@ import android.os.Handler;
 import java.util.List;
 import java.util.Random;
 
+import hu.falsyquiz.falsyquiz.Activities.AbstractActivity;
 import hu.falsyquiz.falsyquiz.DataPersister.Entities.Game;
 import hu.falsyquiz.falsyquiz.DataPersister.Entities.Question;
 
 import hu.falsyquiz.falsyquiz.DataPersister.Entities.InfoTextMessage;
+import hu.falsyquiz.falsyquiz.R;
 import lombok.Getter;
 
 /**
@@ -52,7 +54,6 @@ public class GameReferee implements Timer.TimerListener {
     public GameReferee(GameRefereeListener listener, List<Question> questions) {
         this.listener = listener;
         this.questions = questions;
-        InfoTextMessage.initTextMessages();
         game = new Game();
         game.setLives(NUMBER_OF_LIVES);
         game.setUsedFifty(!FIFTY_USED);
@@ -73,7 +74,8 @@ public class GameReferee implements Timer.TimerListener {
         Random random = new Random();
         actualQuestion = questions.remove(random.nextInt(questions.size()));
         listener.printQuestion(actualQuestion);
-        if(actualQuestion.getBonus()) listener.setInfoText(InfoTextMessage.BONUS_QUESTION_TEXT);
+        if(actualQuestion.getBonus()) listener.setInfoText(InfoTextMessage
+                .getTextMessage(R.string.questionActivity_bonusQuestion_text));
         startTimer(Timer.DEFAULT_NORMAL_TIME);
         listener.setButtonsEnability(true);
     }
@@ -83,7 +85,7 @@ public class GameReferee implements Timer.TimerListener {
        if (actualQuestion.getAnswer().equals(answer)) {
            if (actualQuestion.getBonus()) {
                game.setLives(game.getLives() + BONUS_LIFE);
-               listener.setInfoText(InfoTextMessage.BONUS_LIFE_TEXT);
+               listener.setInfoText(InfoTextMessage.getTextMessage(R.string.questionActivity_bonusLife_text));
            } else listener.setInfoText(InfoTextMessage.getCorrectAnswerMessage());
            listener.correctAnswer(answer);
        } else {

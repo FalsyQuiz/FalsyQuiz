@@ -5,4 +5,18 @@
     <string name="mainMenuActivity_helpButton">Súgó</string>
     <string name="questionActivity_timeLeft_text_defaultValue">--</string>
     <string name="questionActivity_timeIsOver_text">OVER</string>
+    <string name="questionActivity_bonusQuestion_text">BÓNUSZKÉRDÉS!</string>
+    <string name="questionActivity_bonusLife_text">+1 ÉLET</string>
+
+    <string-array name="correctAnswer_text_array">
+        <item>Helyes válasz!</item>
+        <item>Szép volt!</item>
+        <item>Hajrá, csak így tovább!</item>
+    </string-array>
+
+    <string-array name="wrongAnswer_text_array">
+        <item>Rossz válasz!</item>
+        <item>Ezt azért illene tudni...</item>
+        <item>Ej, ej, ebből így nem lesz diploma!</item>
+    </string-array>
 </resources>
