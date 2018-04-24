@@ -1,1 +1,1 @@
-pscp -i key.ppk FalsyQuiz\FalsyQuiz\app\build\outputs\apk\debug\app-debug.apk c4367admin@wh04.rackhost.hu:../../web/vadaszfoto.hu/FalsyQuiz
+pscp -i key.ppk app\build\outputs\apk\debug\app-debug.apk c4367falsyQuiz@wh04.rackhost.hu:../../web/vadaszfoto.hu/FalsyQuiz
