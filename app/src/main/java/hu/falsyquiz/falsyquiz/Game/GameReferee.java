@@ -5,8 +5,12 @@ import android.os.Handler;
 import java.util.List;
 import java.util.Random;
 
+import hu.falsyquiz.falsyquiz.Activities.AbstractActivity;
 import hu.falsyquiz.falsyquiz.DataPersister.Entities.Game;
 import hu.falsyquiz.falsyquiz.DataPersister.Entities.Question;
+
+import hu.falsyquiz.falsyquiz.DataPersister.Entities.InfoTextMessage;
+import hu.falsyquiz.falsyquiz.R;
 import lombok.Getter;
 
 /**
@@ -27,6 +31,7 @@ public class GameReferee implements Timer.TimerListener {
         void timeIsOver();
         void setButtonsEnability(boolean enabled);
         void showLives(int lives);
+        void setInfoText(String text);
     }
 
     public static final int NUMBER_OF_LIVES = 5;
@@ -72,6 +77,8 @@ public class GameReferee implements Timer.TimerListener {
         Random random = new Random();
         actualQuestion = questions.remove(random.nextInt(questions.size()));
         listener.printQuestion(actualQuestion);
+        if(actualQuestion.getBonus()) listener.setInfoText(InfoTextMessage
+                .getTextMessage(R.string.questionActivity_bonusQuestion_text));
         startTimer(Timer.DEFAULT_NORMAL_TIME);
         listener.setButtonsEnability(true);
     }
@@ -80,11 +87,15 @@ public class GameReferee implements Timer.TimerListener {
 
        timer.stop();
        if (actualQuestion.getAnswer().equals(answer)) {
-           game.setLives(game.getLives() + (actualQuestion.getBonus() ? BONUS_LIFE : 0));
+           if (actualQuestion.getBonus()) {
+               game.setLives(game.getLives() + BONUS_LIFE);
+               listener.setInfoText(InfoTextMessage.getTextMessage(R.string.questionActivity_bonusLife_text));
+           } else listener.setInfoText(InfoTextMessage.getCorrectAnswerMessage());
            listener.correctAnswer(answer);
        } else {
            game.setLives(game.getLives() - MINUS_LIFE);
            listener.wrongAnswer(actualQuestion.getAnswer(), answer);
+           listener.setInfoText(InfoTextMessage.getWrongAnswerMessage());
        }
        listener.showLives(game.getLives());
        checkGameState();
