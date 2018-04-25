@@ -19,6 +19,9 @@ import hu.falsyquiz.falsyquiz.Game.GameReferee;
 import hu.falsyquiz.falsyquiz.R;
 import lombok.AllArgsConstructor;
 
+import static hu.falsyquiz.falsyquiz.Actions.Actions.playRandomSound;
+import static hu.falsyquiz.falsyquiz.Actions.Actions.vibrate;
+
 public class QuestionActivity extends AbstractActivity implements GameReferee.GameRefereeListener, InfoTextMessage.MessageListener {
 
     @AllArgsConstructor
@@ -157,15 +160,14 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
     }
 
     private void surprise() {
-        //get random szopatás...
         Random random = new Random();
         int randomNumber = random.nextInt(5);
         switch (randomNumber) {
             case 0:
-
+                vibrate(this, 2000);
                 break;
             case 1:
-
+                playRandomSound();
                 break;
             case 2:
 
