@@ -1,7 +1,8 @@
 package hu.falsyquiz.falsyquiz.Game;
 
-import android.os.Handler;
 
+import java.util.ArrayList;
+import android.os.Handler;
 import java.util.List;
 import java.util.Random;
 
@@ -27,6 +28,7 @@ public class GameReferee implements Timer.TimerListener {
         void win();
         void correctAnswer(String correctAnswer);
         void wrongAnswer(String correctAnswer, String wrongAnswer);
+        void phoneCallShowAnswer(String answer);
         void tick(long timeLeft);
         void timeIsOver();
         void setButtonsEnability(boolean enabled);
@@ -37,6 +39,7 @@ public class GameReferee implements Timer.TimerListener {
     public static final int NUMBER_OF_LIVES = 5;
     public static final int BONUS_LIFE = 1;
     public static final int MINUS_LIFE = 1;
+    public static final int PHONE_SUCCESS_THRESHOLD = 50;
 
     public static final boolean FIFTY_USED = true;
     public static final boolean PHONE_USED = true;
@@ -99,6 +102,19 @@ public class GameReferee implements Timer.TimerListener {
        }
        listener.showLives(game.getLives());
        checkGameState();
+    }
+
+    public void usePhoneCall(ArrayList<String> availableAnswers) {
+        Random rnd = new Random();
+        if (!availableAnswers.contains(actualQuestion.getAnswer())
+                || (rnd.nextInt(100) + 1) > PHONE_SUCCESS_THRESHOLD) {
+            availableAnswers.remove(actualQuestion.getAnswer());
+            listener.phoneCallShowAnswer(
+                    availableAnswers.get(rnd.nextInt(availableAnswers.size()))
+            );
+        } else listener.phoneCallShowAnswer(actualQuestion.getAnswer());
+        game.setUsedPhone(true);
+        listener.setInfoText(InfoTextMessage.getPhoneCallMessage());
     }
 
     private void checkGameState() {
