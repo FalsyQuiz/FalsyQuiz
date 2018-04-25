@@ -8,9 +8,8 @@ import android.view.animation.AlphaAnimation;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
-
+import java.util.ArrayList;
 import java.util.Random;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import hu.falsyquiz.falsyquiz.DataPersister.Entities.InfoTextMessage;
@@ -41,6 +40,21 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
                 }
 
             }, TIME_BEFORE_RESULT);
+        }
+    }
+
+    @AllArgsConstructor
+    public class PhoneCallListener implements View.OnClickListener {
+
+        @Override
+        public void onClick(View view) {
+            ArrayList<String> availableAnswers = new ArrayList<>();
+            if (optionA.getVisibility() == View.VISIBLE) availableAnswers.add(Question.OPTION_A);
+            if (optionB.getVisibility() == View.VISIBLE) availableAnswers.add(Question.OPTION_B);
+            if (optionC.getVisibility() == View.VISIBLE) availableAnswers.add(Question.OPTION_C);
+            if (optionD.getVisibility() == View.VISIBLE) availableAnswers.add(Question.OPTION_D);
+            usePhoneCall(availableAnswers);
+            phone.setVisibility(View.INVISIBLE);
         }
     }
 
@@ -103,7 +117,7 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
         optionB.setOnClickListener(new AnswerListener(Question.OPTION_B));
         optionC.setOnClickListener(new AnswerListener(Question.OPTION_C));
         optionD.setOnClickListener(new AnswerListener(Question.OPTION_D));
-
+        phone.setOnClickListener(new PhoneCallListener());
         fifty.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -123,6 +137,8 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
     private void answerQuestion(String answer) {
         gameReferee.answerQuestion(answer);
     }
+
+    private void usePhoneCall(ArrayList<String> availableAnswers) {gameReferee.usePhoneCall(availableAnswers);}
 
     @Override
     public void printQuestion(Question question) {
@@ -266,6 +282,24 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
         optionB.setVisibility(View.VISIBLE);
         optionC.setVisibility(View.VISIBLE);
         optionD.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void phoneCallShowAnswer(String answer) {
+        switch (answer) {
+            case Question.OPTION_A:
+                optionA.setBackgroundColor(getResources().getColor(R.color.QuestionActivity_phoneCallShowAnswerColor));
+                break;
+            case Question.OPTION_B:
+                optionB.setBackgroundColor(getResources().getColor(R.color.QuestionActivity_phoneCallShowAnswerColor));
+                break;
+            case Question.OPTION_C:
+                optionC.setBackgroundColor(getResources().getColor(R.color.QuestionActivity_phoneCallShowAnswerColor));
+                break;
+            case Question.OPTION_D:
+                optionD.setBackgroundColor(getResources().getColor(R.color.QuestionActivity_phoneCallShowAnswerColor));
+                break;
+        }
     }
 
     @Override

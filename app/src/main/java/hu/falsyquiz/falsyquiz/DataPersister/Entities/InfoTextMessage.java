@@ -16,12 +16,14 @@ public class InfoTextMessage {
 
     private static List<String> correctAnswerMessages;
     private static List<String> wrongAnswerMessages;
+    private static List<String> phoneCallMessages;
     private static Random rnd;
     private static MessageListener messageListener;
 
     private static void initializeTextMessages() {
         correctAnswerMessages = new ArrayList<>(Arrays.asList(getTextMessageArray(R.array.correctAnswer_text_array)));
         wrongAnswerMessages = new ArrayList<>(Arrays.asList(getTextMessageArray(R.array.wrongAnswer_text_array)));
+        phoneCallMessages = new ArrayList<>(Arrays.asList(getTextMessageArray(R.array.phoneCall_text_array)));
         rnd = new Random();
     }
 
@@ -38,6 +40,10 @@ public class InfoTextMessage {
 
     public static String getWrongAnswerMessage() {
         return wrongAnswerMessages.get(rnd.nextInt(wrongAnswerMessages.size()));
+    }
+
+    public static String getPhoneCallMessage() {
+        return phoneCallMessages.get(rnd.nextInt(phoneCallMessages.size()));
     }
 
     public static String getTextMessage(int id) {
