@@ -26,7 +26,8 @@
             android:screenOrientation="landscape" />
         <activity
             android:name=".Activities.GameOverActivity"
-            android:parentActivityName=".Activities.MainMenuActivity" />
+            android:parentActivityName=".Activities.MainMenuActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Activities.HelpActivity"
             android:parentActivityName=".Activities.MainMenuActivity" />

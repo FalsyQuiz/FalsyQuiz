@@ -13,4 +13,5 @@
     <color name="text_shadow_white">#FFFFFF</color>
     <color name="lightBackground">#e2e5f1</color>
     <color name="white">#FFFFFF</color>
+    <color name="red">#f22828</color>
 </resources>

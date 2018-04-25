@@ -2,11 +2,12 @@ package hu.falsyquiz.falsyquiz.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import hu.falsyquiz.falsyquiz.Application.BaseApplication;
 import hu.falsyquiz.falsyquiz.DataPersister.Entities.Game;
 import hu.falsyquiz.falsyquiz.R;
 import hu.falsyquiz.falsyquiz.Tools.SongPlayer;
@@ -24,6 +25,9 @@ public class GameOverActivity extends AbstractActivity {
     @BindView(R.id.gameOverActivity_percentageText)
     TextView percentageText;
 
+    @BindView(R.id.gameOverActivity_resultPicture)
+    ImageView resultPicture;
+
     private SongPlayer songPlayer;
 
     @Override
@@ -34,6 +38,8 @@ public class GameOverActivity extends AbstractActivity {
 
         Intent intent = getIntent();
         Game game = intent.getParcelableExtra(EXTRA_GAMER_KEY);
+        View view = this.getWindow().getDecorView();
+        view.setBackgroundColor(getResources().getColor(R.color.white));
 
         if (game.gameOver()) {
             fail(game);
@@ -52,15 +58,23 @@ public class GameOverActivity extends AbstractActivity {
 
     private void fail(Game game) {
         resultText.setText(getString(R.string.gameOverActivity_failed_text));
+        resultText.setTextColor(getResources().getColor(R.color.red));
+        resultPicture.setImageResource(R.mipmap.failed);
         songPlayer = new SongPlayer(this, R.raw.laugh);
         songPlayer.playSong();
+        percentageText.setTextColor(getResources().getColor(R.color.colorPrimary));
+        numOfQuestionsText.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
         printResults(game);
     }
 
     private void win(Game game) {
         resultText.setText(getString(R.string.gameOverActivity_win_text));
+        resultText.setTextColor(getResources().getColor(R.color.red));
         songPlayer = new SongPlayer(this, R.raw.human_audience_cheer_and_clap);
         songPlayer.playSong();
+        percentageText.setTextColor(getResources().getColor(R.color.colorPrimary));
+        numOfQuestionsText.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+        resultPicture.setImageResource(R.mipmap.winner);
         printResults(game);
     }
 
