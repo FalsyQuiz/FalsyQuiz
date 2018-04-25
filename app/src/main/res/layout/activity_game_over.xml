@@ -14,7 +14,7 @@
         android:layout_centerHorizontal="true"
         android:layout_margin="@dimen/gameOverActivity_resultText_marginAll"
         android:textSize="@dimen/gameOverActivity_resultText_size"
-        android:fontFamily="@font/nunitosans_bold"
+        android:fontFamily="@font/lobster_regular"
         />
 
     <ImageView
@@ -31,6 +31,7 @@
         android:layout_below="@id/gameOverActivity_resultText"
         android:layout_centerHorizontal="true"
         android:textSize="@dimen/gameOverActivity_numOfQuestions_size"
+        android:fontFamily="@font/blackhansans_regular"
         android:layout_marginTop="@dimen/gameOverActivity_numOfQuestionsText_topMargin"/>
 
     <TextView
@@ -41,6 +42,7 @@
         android:layout_centerHorizontal="true"
         android:textSize="@dimen/gameOverActivity_percentageText"
         android:layout_marginTop="@dimen/gameOverActivity_percentageText_topMargin"
-        android:fontFamily="@font/handlee_regular"/>
+        android:layout_marginLeft="@dimen/gameOverActivity_percentageText_leftMargin"
+        android:fontFamily="@font/orbitron_regular"/>
 
 </RelativeLayout>
