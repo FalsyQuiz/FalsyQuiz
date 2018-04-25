@@ -6,6 +6,7 @@ import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import hu.falsyquiz.falsyquiz.Application.BaseApplication;
 import hu.falsyquiz.falsyquiz.DataPersister.Entities.Game;
 import hu.falsyquiz.falsyquiz.R;
 import hu.falsyquiz.falsyquiz.Tools.SongPlayer;
@@ -58,6 +59,8 @@ public class GameOverActivity extends AbstractActivity {
 
     private void win(Game game) {
         resultText.setText(getString(R.string.gameOverActivity_win_text));
+        songPlayer = new SongPlayer(this, R.raw.human_audience_cheer_and_clap);
+        songPlayer.playSong();
         printResults(game);
     }
 
