@@ -30,12 +30,9 @@ before_script:
   - android-wait-for-emulator
   - adb shell input keyevent 82 &
   - chmod +x gradlew
+  - chmod +x auto_deploy_linux.sh
+  - chmod 400 key_linux.ppk
   - ./gradlew dependencies || true
-#deploy:
-#  provider: bintray
-#  file: "descriptor.json"
-#  user: "pevad95"
-#  key: "bf6c89a2135fec7df49797d084dd8cfbf552c85b"
-#  skip_cleanup: true
 
 script: ./gradlew connectedAndroidtest --stacktrace
+after_script: ./auto_deploy_linux.sh
