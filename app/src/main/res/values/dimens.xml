@@ -10,4 +10,7 @@
     <dimen name="gameOverActivity_resultText_marginAll">15dp</dimen>
     <dimen name="gameOverActivity_numOfQuestions_size">15dp</dimen>
     <dimen name="gameOverActivity_percentageText">15dp</dimen>
+    <dimen name="gameOverActivity_numOfQuestionsText_topMargin">250dp</dimen>
+    <dimen name="gameOverActivity_percentageText_topMargin">50dp</dimen>
+    <dimen name="gameOverActivity_picture_topMargin">40dp</dimen>
 </resources>
