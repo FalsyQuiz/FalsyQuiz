@@ -2,7 +2,6 @@ package hu.falsyquiz.falsyquiz.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import butterknife.BindView;
@@ -23,9 +22,6 @@ public class GameOverActivity extends AbstractActivity {
 
     @BindView(R.id.gameOverActivity_percentageText)
     TextView percentageText;
-
-    @BindView(R.id.gameOverActivity_resultPicture)
-    ImageView resultPicture;
 
     private SongPlayer songPlayer;
 
@@ -55,7 +51,6 @@ public class GameOverActivity extends AbstractActivity {
 
     private void fail(Game game) {
         resultText.setText(getString(R.string.gameOverActivity_failed_text));
-        resultPicture.setImageResource(R.mipmap.failed);
         songPlayer = new SongPlayer(this, R.raw.laugh);
         songPlayer.playSong();
         printResults(game);
@@ -63,9 +58,6 @@ public class GameOverActivity extends AbstractActivity {
 
     private void win(Game game) {
         resultText.setText(getString(R.string.gameOverActivity_win_text));
-        songPlayer = new SongPlayer(this, R.raw.human_audience_cheer_and_clap);
-        songPlayer.playSong();
-        resultPicture.setImageResource(R.mipmap.winner);
         printResults(game);
     }
 

@@ -17,7 +17,11 @@ import hu.falsyquiz.falsyquiz.DataPersister.Entities.InfoTextMessage;
 import hu.falsyquiz.falsyquiz.DataPersister.Entities.Question;
 import hu.falsyquiz.falsyquiz.Game.GameReferee;
 import hu.falsyquiz.falsyquiz.R;
+import hu.falsyquiz.falsyquiz.Tools.SongPlayer;
 import lombok.AllArgsConstructor;
+
+import static hu.falsyquiz.falsyquiz.Actions.Actions.playRandomSound;
+import static hu.falsyquiz.falsyquiz.Actions.Actions.vibrate;
 
 public class QuestionActivity extends AbstractActivity implements GameReferee.GameRefereeListener, InfoTextMessage.MessageListener {
 
@@ -42,6 +46,7 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
 
     public static final int TIME_BEFORE_RESULT = 1500;
     public static boolean ENABLED = true;
+    public static final int NOT_ENOUGH_TIME_LEFT = 10;
 
     @BindView(R.id.questionActivity_questionText)
     TextView questionText;
@@ -77,6 +82,7 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
     TextView infoText;
 
     private GameReferee gameReferee;
+    private SongPlayer songPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -157,15 +163,14 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
     }
 
     private void surprise() {
-        //get random szopatás...
         Random random = new Random();
         int randomNumber = random.nextInt(5);
         switch (randomNumber) {
             case 0:
-
+                vibrate(this, 2000);
                 break;
             case 1:
-
+                playRandomSound();
                 break;
             case 2:
 
@@ -182,6 +187,7 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
 
     @Override
     public void gameOver() {
+        songPlayer.stop();
         Intent intent = new Intent(this, GameOverActivity.class);
         intent.putExtra(GameOverActivity.EXTRA_GAMER_KEY, gameReferee.getGame());
         clearAndStartActivity(intent);
@@ -189,13 +195,18 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
 
     @Override
     public void win() {
-
+        songPlayer.stop();
+        Intent intent = new Intent(this, GameOverActivity.class);
+        intent.putExtra(GameOverActivity.EXTRA_GAMER_KEY, gameReferee.getGame());
+        clearAndStartActivity(intent);
     }
 
     @Override
     public void correctAnswer(String answer) {
 
         setButtonsVisible();
+        songPlayer = new SongPlayer(this, R.raw.good_answer_song);
+        songPlayer.playSong();
 
         switch (answer) {
             case Question.OPTION_A:
@@ -217,6 +228,8 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
     public void wrongAnswer(String correctAnswer, String wrongAnswer) {
 
         setButtonsVisible();
+        songPlayer = new SongPlayer(this, R.raw.annoying_noise);
+        songPlayer.playSong();
 
         switch (wrongAnswer) {
             case Question.OPTION_A:
@@ -259,6 +272,10 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
     public void tick(long timeLeft) {
         long timeLeftSec = timeLeft / 1000;
         this.timeLeft.setText(timeLeftSec < 10 ? "0" + timeLeftSec : timeLeftSec + "");
+        if ( timeLeftSec < NOT_ENOUGH_TIME_LEFT ) {
+            songPlayer = new SongPlayer(this, R.raw.female_scream);
+            songPlayer.playSong();
+        }
     }
 
     @Override

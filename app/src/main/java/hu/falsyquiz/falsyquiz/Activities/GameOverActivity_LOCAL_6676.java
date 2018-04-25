@@ -63,8 +63,6 @@ public class GameOverActivity extends AbstractActivity {
 
     private void win(Game game) {
         resultText.setText(getString(R.string.gameOverActivity_win_text));
-        songPlayer = new SongPlayer(this, R.raw.human_audience_cheer_and_clap);
-        songPlayer.playSong();
         resultPicture.setImageResource(R.mipmap.winner);
         printResults(game);
     }

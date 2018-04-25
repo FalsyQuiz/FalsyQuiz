@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import hu.falsyquiz.falsyquiz.Application.BaseApplication;
 import hu.falsyquiz.falsyquiz.DataPersister.Entities.Game;
 import hu.falsyquiz.falsyquiz.R;
 import hu.falsyquiz.falsyquiz.Tools.SongPlayer;
@@ -63,9 +64,12 @@ public class GameOverActivity extends AbstractActivity {
 
     private void win(Game game) {
         resultText.setText(getString(R.string.gameOverActivity_win_text));
+<<<<<<< HEAD
+        resultPicture.setImageResource(R.mipmap.winner);
+=======
         songPlayer = new SongPlayer(this, R.raw.human_audience_cheer_and_clap);
         songPlayer.playSong();
-        resultPicture.setImageResource(R.mipmap.winner);
+>>>>>>> develop
         printResults(game);
     }
 
