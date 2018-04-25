@@ -73,6 +73,12 @@ public class MainMenuActivity extends AbstractActivity{
                     case R.id.mainMenuActivity_start:
                         showQuestionActivity();
                         break;
+                    case R.id.mainMenuActivity_help:
+                        showHelpActivity();
+                        break;
+                    case R.id.mainMenuActivity_results:
+                        showResultsActivity();
+                        break;
                     }
 
                 return true;
@@ -86,6 +92,14 @@ public class MainMenuActivity extends AbstractActivity{
 
     private void showQuestionActivity() {
         startActivity(new Intent(MainMenuActivity.this, QuestionActivity.class));
+    }
+
+    private void showHelpActivity() {
+        startActivity(new Intent(MainMenuActivity.this, HelpActivity.class));
+    }
+
+    private void showResultsActivity() {
+        startActivity(new Intent(MainMenuActivity.this, ResultsActivity.class));
     }
 
     @Override
