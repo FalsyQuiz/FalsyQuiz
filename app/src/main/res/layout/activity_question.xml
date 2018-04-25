@@ -83,14 +83,14 @@
             android:id="@+id/questionActivity_optionA_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@color/QuestionActivity_buttonColor"
+            android:background="@drawable/answer_button"
             android:layout_margin="@dimen/OptionButtonMargin"  />
 
         <Button
             android:id="@+id/questionActivity_optionB_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@color/QuestionActivity_buttonColor"
+            android:background="@drawable/answer_button"
             android:layout_margin="@dimen/OptionButtonMargin" />
     </TableRow>
     <TableRow
@@ -101,14 +101,14 @@
             android:id="@+id/questionActivity_optionC_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@color/QuestionActivity_buttonColor"
+            android:background="@drawable/answer_button"
             android:layout_margin="@dimen/OptionButtonMargin" />
 
         <Button
             android:id="@+id/questionActivity_optionD_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@color/QuestionActivity_buttonColor"
+            android:background="@drawable/answer_button"
             android:layout_margin="@dimen/OptionButtonMargin"  />
     </TableRow>
     </TableLayout>
