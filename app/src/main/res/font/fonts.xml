@@ -29,8 +29,14 @@
         android:font="@font/orbitron_regular"
         android:fontStyle="normal"
         android:fontWeight="400" />
+
     <font
         android:font="@font/sacramento_regular"
+        android:fontStyle="normal"
+        android:fontWeight="400" />
+
+    <font
+        android:font="@font/bitter_regular"
         android:fontStyle="normal"
         android:fontWeight="400" />
 

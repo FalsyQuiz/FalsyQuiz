@@ -4,7 +4,8 @@
         <item
             android:id="@+id/mainMenuActivity_start"
             android:icon="@mipmap/ic_play_circle_outline_black_24dp"
-            android:title="@string/mainMenuActivity_startQuizButton" />
+            android:title="@string/mainMenuActivity_startQuizButton"
+            />
         <item
             android:id="@+id/mainMenuActivity_results"
             android:icon="@mipmap/ic_assessment_black_24dp"
