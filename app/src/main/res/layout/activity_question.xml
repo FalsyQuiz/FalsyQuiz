@@ -58,7 +58,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"/>
+        android:layout_centerVertical="true"
+        android:fontFamily="@font/bitter_regular"
+        android:textSize="16dp" />
 
     <TextView
         android:id="@+id/questionActivity_infoText"
@@ -66,7 +68,8 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_above="@id/questionActivity_buttonsArea"/>
+        android:layout_above="@id/questionActivity_buttonsArea"
+        android:fontFamily="@font/bitter_regular" />
 
     <TableLayout
         android:id="@+id/questionActivity_buttonsArea"
@@ -83,15 +86,18 @@
             android:id="@+id/questionActivity_optionA_button"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
-            android:background="@color/QuestionActivity_buttonColor"
-            android:layout_margin="@dimen/OptionButtonMargin"  />
+            android:layout_margin="@dimen/OptionButtonMargin"
+            android:fontFamily="@font/bitter_regular"
+            android:background="@drawable/answer_button" />
 
         <Button
             android:id="@+id/questionActivity_optionB_button"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
-            android:background="@color/QuestionActivity_buttonColor"
-            android:layout_margin="@dimen/OptionButtonMargin" />
+            android:layout_margin="@dimen/OptionButtonMargin"
+            android:fontFamily="@font/bitter_regular"
+            android:background="@drawable/answer_button" />
+
     </TableRow>
     <TableRow
         android:layout_width="fill_parent"
@@ -101,14 +107,16 @@
             android:id="@+id/questionActivity_optionC_button"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
-            android:background="@color/QuestionActivity_buttonColor"
-            android:layout_margin="@dimen/OptionButtonMargin" />
+            android:layout_margin="@dimen/OptionButtonMargin"
+            android:fontFamily="@font/bitter_regular"
+            android:background="@drawable/answer_button" />
 
         <Button
             android:id="@+id/questionActivity_optionD_button"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
-            android:background="@color/QuestionActivity_buttonColor"
+            android:fontFamily="@font/bitter_regular"
+            android:background="@drawable/answer_button"
             android:layout_margin="@dimen/OptionButtonMargin"  />
     </TableRow>
     </TableLayout>
