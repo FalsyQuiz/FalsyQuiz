@@ -14,6 +14,7 @@ import javax.inject.Inject;
 import hu.falsyquiz.falsyquiz.Application.BaseApplication;
 import hu.falsyquiz.falsyquiz.DataPersister.Entities.Managers.DataManager;
 import hu.falsyquiz.falsyquiz.R;
+import hu.falsyquiz.falsyquiz.Tools.VibratorEngine;
 
 
 /**
@@ -24,6 +25,9 @@ public class AbstractActivity extends AppCompatActivity {
 
     @Inject
     protected DataManager dataManager;
+
+    @Inject
+    protected VibratorEngine vibratorEngine;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

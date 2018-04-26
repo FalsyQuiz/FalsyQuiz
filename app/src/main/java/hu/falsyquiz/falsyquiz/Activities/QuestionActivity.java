@@ -17,6 +17,7 @@ import hu.falsyquiz.falsyquiz.DataPersister.Entities.Question;
 import hu.falsyquiz.falsyquiz.Game.GameReferee;
 import hu.falsyquiz.falsyquiz.R;
 import hu.falsyquiz.falsyquiz.Tools.SongPlayer;
+import hu.falsyquiz.falsyquiz.Tools.VibratorEngine;
 import lombok.AllArgsConstructor;
 
 import static hu.falsyquiz.falsyquiz.Actions.Actions.playRandomSound;
@@ -48,6 +49,8 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
 
         @Override
         public void onClick(View view) {
+            songPlayer = new SongPlayer(QuestionActivity.this, R.raw.dialing);
+            songPlayer.playSong();
             ArrayList<String> availableAnswers = new ArrayList<>();
             if (optionA.getVisibility() == View.VISIBLE) availableAnswers.add(Question.OPTION_A);
             if (optionB.getVisibility() == View.VISIBLE) availableAnswers.add(Question.OPTION_B);
@@ -61,6 +64,8 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
     public static final int TIME_BEFORE_RESULT = 1500;
     public static boolean ENABLED = true;
     public static final int NOT_ENOUGH_TIME_LEFT = 10;
+    public static final int VERY_REALLY_NOT_ENOUGH_TIME_LEFT = 5;
+
 
     @BindView(R.id.questionActivity_questionText)
     TextView questionText;
@@ -142,6 +147,8 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
 
     @Override
     public void printQuestion(Question question) {
+        if (songPlayer != null)
+            songPlayer.stop();
         questionText.setText(question.getQuestion());
         optionA.setText(question.getOptionA());
         optionB.setText(question.getOptionB());
@@ -306,8 +313,13 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
     public void tick(long timeLeft) {
         long timeLeftSec = timeLeft / 1000;
         this.timeLeft.setText(timeLeftSec < 10 ? "0" + timeLeftSec : timeLeftSec + "");
-        if ( timeLeftSec < NOT_ENOUGH_TIME_LEFT ) {
+        if ( timeLeftSec == NOT_ENOUGH_TIME_LEFT ) {
             songPlayer = new SongPlayer(this, R.raw.female_scream);
+            songPlayer.playSong();
+            vibratorEngine.vibrate(VibratorEngine.EXTRA_SUPER_LONG_TIME);
+        }
+        if ( timeLeftSec == VERY_REALLY_NOT_ENOUGH_TIME_LEFT ) {
+            songPlayer = new SongPlayer(this, R.raw.female_giving_birth);
             songPlayer.playSong();
         }
     }
