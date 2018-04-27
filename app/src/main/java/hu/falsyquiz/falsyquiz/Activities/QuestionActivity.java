@@ -25,11 +25,17 @@ import static hu.falsyquiz.falsyquiz.Actions.Actions.vibrate;
 
 public class QuestionActivity extends AbstractActivity implements GameReferee.GameRefereeListener, InfoTextMessage.MessageListener {
 
+
+
     @AllArgsConstructor
     public class AnswerListener implements View.OnClickListener {
 
         private String answer;
 
+        /**
+         * This method initializes the onClickListener for the answer buttons.
+         * @param view
+         */
         @Override
         public void onClick(View view) {
             setButtonsEnability(!ENABLED);
@@ -47,6 +53,10 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
     @AllArgsConstructor
     public class PhoneCallListener implements View.OnClickListener {
 
+        /**
+         * This method initializes the onClickListener for the phone button
+         * @param view
+         */
         @Override
         public void onClick(View view) {
             songPlayer = new SongPlayer(QuestionActivity.this, R.raw.dialing);
@@ -117,6 +127,10 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
 
     }
 
+    /**
+     * This method initializes the onClickListener for the answer, fifty, phone and surprise
+     * buttons.
+     */
     private void initOnClickListeners() {
         optionA.setOnClickListener(new AnswerListener(Question.OPTION_A));
         optionB.setOnClickListener(new AnswerListener(Question.OPTION_B));
@@ -129,22 +143,32 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
                 fifty();
             }
         });
-
         surprise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 surprise();
             }
         });
-
     }
 
+    /**
+     * This method calls the GameReferee's answerQuestions method.
+     * @param answer The player's current answer.
+     */
     private void answerQuestion(String answer) {
         gameReferee.answerQuestion(answer);
     }
 
+    /**
+     * This method calls the GameReferee's usePhoneCall method.
+     * @param availableAnswers
+     */
     private void usePhoneCall(ArrayList<String> availableAnswers) {gameReferee.usePhoneCall(availableAnswers);}
 
+    /**
+     * This method stops the currently playing song and prints a question.
+     * @param question The game's current question.
+     */
     @Override
     public void printQuestion(Question question) {
         if (songPlayer != null)
@@ -156,6 +180,9 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
         optionD.setText(question.getOptionD());
     }
 
+    /**
+     * This method implements the fifty help.
+     */
     private void fifty() {
         Random random = new Random();
         int randomNumber1 = random.nextInt(4);
@@ -168,6 +195,10 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
         fifty.setVisibility(View.INVISIBLE);
     }
 
+    /**
+     * This method makes a button invisible based on its parameter.
+     * @param buttonNumber The number of the button to be invisible.
+     */
     private void setButtonInvisible(int buttonNumber) {
         switch (buttonNumber) {
             case 0:
@@ -185,6 +216,9 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
         }
     }
 
+    /**
+     * This method implements the surprise "help".
+     */
     private void surprise() {
         Random random = new Random();
         int randomNumber = random.nextInt(5);
@@ -208,6 +242,9 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
         }
     }
 
+    /**
+     * This method stops the currently playing song and create a GameOverActivity.
+     */
     @Override
     public void gameOver() {
         songPlayer.stop();
@@ -216,6 +253,9 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
         clearAndStartActivity(intent);
     }
 
+    /**
+     * This method stops the currently playing song and create a GameOverActivity.
+     */
     @Override
     public void win() {
         songPlayer.stop();
@@ -224,6 +264,11 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
         clearAndStartActivity(intent);
     }
 
+    /**
+     * This method runs when the user has answered correctly. It plays a celebrating song and
+     * colors the good answer's button green.
+     * @param answer The player's current answer.
+     */
     @Override
     public void correctAnswer(String answer) {
 
@@ -247,6 +292,12 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
         }
     }
 
+    /**
+     * This method runs when the user has not answered correctly. It plays and annoying song and
+     * color the good answer's button green and the wrong answer's button red.
+     * @param correctAnswer The good answer to the current question.
+     * @param wrongAnswer The wrong answer to the current question, which the player has chosen.
+     */
     @Override
     public void wrongAnswer(String correctAnswer, String wrongAnswer) {
 
@@ -284,6 +335,9 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
         }
     }
 
+    /**
+     * This method sets all of the answer buttons visible.
+     */
     private void setButtonsVisible() {
         optionA.setVisibility(View.VISIBLE);
         optionB.setVisibility(View.VISIBLE);
@@ -291,6 +345,10 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
         optionD.setVisibility(View.VISIBLE);
     }
 
+    /**
+     * This method colors a button after the user used the phone help.
+     * @param answer
+     */
     @Override
     public void phoneCallShowAnswer(String answer) {
         switch (answer) {
@@ -309,6 +367,11 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
         }
     }
 
+    /**
+     * This method changes how much time is left for the current question every second and plays
+     * songs when there is not much time left.
+     * @param timeLeft How much time is left to answer the current question.
+     */
     @Override
     public void tick(long timeLeft) {
         long timeLeftSec = timeLeft / 1000;
@@ -324,11 +387,19 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
         }
     }
 
+    /**
+     * This method shows the user that the time is over.
+     */
     @Override
     public void timeIsOver() {
         timeLeft.setText(R.string.questionActivity_timeIsOver_text);
         setButtonsEnability(!ENABLED);
     }
+
+    /**
+     * This method sets the availability of all of the buttons based on its parameter.
+     * @param enabled
+     */
     @Override
     public void setButtonsEnability(boolean enabled) {
         optionA.setEnabled(enabled);
@@ -352,6 +423,10 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
         surprise.setEnabled(enabled);
     }
 
+    /**
+     * This method shows how much life a player still has.
+     * @param lives Number of lives left.
+     */
     @Override
     public void showLives(int lives) {
         livesText.setText("");
@@ -359,6 +434,10 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
         livesText.setCompoundDrawablesWithIntrinsicBounds(0,0,R.mipmap.ic_favorite_black_18dp,0);
     }
 
+    /**
+     * This method prints useful information for the player.
+     * @param text The current information to be printed.
+     */
     @Override
     public void setInfoText(String text) {
         infoText.setText(text);

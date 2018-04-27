@@ -15,7 +15,7 @@ import hu.falsyquiz.falsyquiz.R;
 import lombok.Getter;
 
 /**
- *
+ * The class that plays the game.
  */
 
 public class GameReferee implements Timer.TimerListener {
@@ -67,15 +67,25 @@ public class GameReferee implements Timer.TimerListener {
         listener.showLives(game.getLives());
     }
 
+    /**
+     * This method starts the game.
+     */
     public void play() {
         newQuestion();
     }
 
+    /**
+     * This method starts the timer.
+     * @param time
+     */
     private void startTimer(long time) {
         timer = new Timer(time, this);
         timer.start();
     }
 
+    /**
+     * This method jumps to the next question.
+     */
     private void newQuestion() {
         Random random = new Random();
         actualQuestion = questions.remove(random.nextInt(questions.size()));
@@ -117,6 +127,9 @@ public class GameReferee implements Timer.TimerListener {
         listener.setInfoText(InfoTextMessage.getPhoneCallMessage());
     }
 
+    /**
+     * This method checks if the game is over.
+     */
     private void checkGameState() {
         game.setNumOfQuestions(game.getNumOfQuestions() + 1);
         if (!game.gameOver() && questions.isEmpty()) {
@@ -146,6 +159,9 @@ public class GameReferee implements Timer.TimerListener {
         }
     }
 
+    /**
+     * This method jumps to the next question.
+     */
     private void next() {
         newQuestion();
     }
