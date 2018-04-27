@@ -56,6 +56,10 @@ public class GameOverActivity extends AbstractActivity {
         }
     }
 
+    /**
+     * This method runs when the player loses the game.
+     * @param game The game which is currently played.
+     */
     private void fail(Game game) {
         resultText.setText(getString(R.string.gameOverActivity_failed_text));
         resultText.setTextColor(getResources().getColor(R.color.red));
@@ -67,6 +71,10 @@ public class GameOverActivity extends AbstractActivity {
         printResults(game);
     }
 
+    /**
+     * This method runs when the player wins the game.
+     * @param game The game which is currently played.
+     */
     private void win(Game game) {
         resultText.setText(getString(R.string.gameOverActivity_win_text));
         resultText.setTextColor(getResources().getColor(R.color.red));
@@ -78,6 +86,10 @@ public class GameOverActivity extends AbstractActivity {
         printResults(game);
     }
 
+    /**
+     * This method prints the results.
+     * @param game The game which is currently played.
+     */
     private void printResults(Game game) {
         numOfQuestionsText.setText(game.getCorrectAnswers() + " / " + game.getNumOfQuestions());
         float percent = ((float) game.getCorrectAnswers() / game.getNumOfQuestions()) * 100;
