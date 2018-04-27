@@ -93,7 +93,7 @@ public class QuestionInitializer {
                 Question.OPTION_A, false));
 
         defaultQuestions.add(new Question((Long )null,
-                "Fordítás során melyik elemnző kezdi meg először a működését?",
+                "Fordítás során melyik elemző kezdi meg először a működését?",
                 "Lexikális", "Szintaktikus", "Szemantikus" ,
                 "Egyéb", Question.OPTION_A, false));
 
@@ -101,6 +101,99 @@ public class QuestionInitializer {
                 "Mi a lexikális elemző kimenetele?",
                 "Egyéb", "tokensorozat", "szintaxisfa" ,
                 "lexikális szótár", Question.OPTION_B, false));
+
+        defaultQuestions.add(new Question((Long )null,
+                "Szeretnél 1 bónusz életet?",
+                "Ide vele!!!", "Nem, anélkül is király vagyok!",
+                "Ez ugye csak költői kérdés?" ,
+                "Vannak életek ebben a játékban???", Question.OPTION_B, true));
+
+        defaultQuestions.add(new Question((Long )null,
+                "Melyik a Java legújabb, már megjelent verziója?",
+                "7", "8", "9" , "10", Question.OPTION_C,
+                false));
+
+        defaultQuestions.add(new Question((Long )null,
+                "Mi a jar?",
+                "Befőttes üveg", "Mosogatószer", "Összezipelt Java osztályok" ,
+                "Legyen már vége a játéknak", Question.OPTION_C,
+                true));
+
+        defaultQuestions.add(new Question((Long )null,
+                "Melyik nyelv hello word-je ez? (let ((hello0 (lambda() " +
+                        "(display \"Hello world\") (newline))))\n" + "  (hello0))",
+                "Scheme", "Scala", "Common Lisp" ,
+                "Adj egy bónusz életet pls.", Question.OPTION_A,
+                true));
+
+        defaultQuestions.add(new Question((Long )null,
+                "Melyik nyelv hello word-je ez? Universe bear hatchery powers world.\n" +
+                        "    bear hatchery powers o.      bear hatchery powers hell     marshy marshy marshy a snowmelt",
+                "Smalltalk", "Shakespeare", "Nem tudom" ,
+                "HomeSpring", Question.OPTION_D,
+                false));
+
+        defaultQuestions.add(new Question((Long )null,
+                "Melyik nyelv hello word-je ez? view layout [text \"Hello world!\" button \"Quit\" [quit]]",
+                "Rebol", "Lehet", "Delphi" ,
+                "Processing", Question.OPTION_A,
+                false));
+
+        defaultQuestions.add(new Question((Long )null,
+                "Melyik nyelv hello word-je ez? \\starttext\n" + "Hello, world!\n" + "\\stoptext",
+                "TeX", "LaTeX", "ConTeXt" ,
+                "Ilyen nincs", Question.OPTION_C,
+                true));
+
+        defaultQuestions.add(new Question((Long )null,
+                "Melyik nyelv hello word-je ez? view layout [text \"Hello world!\" button \"Quit\" [quit]]",
+                "Rebol", "Lehet", "Delphi" ,
+                "Processing", Question.OPTION_A,
+                false));
+
+        defaultQuestions.add(new Question((Long )null,
+                "Melyik nyelv hello word-je ez? ?- write('Hello world!'), nl.\n" + "Hello world!\n" +
+                        "true.\n" + "\n" + "?-",
+                "Scala", "Ilyen nincs", "Prolog" ,
+                "Erlang", Question.OPTION_C,
+                false));
+
+        defaultQuestions.add(new Question((Long )null,
+                "Melyik nyelv hello word-je ez? fn main() {\n" + "    println(\"hello, world\");\n" + "}",
+                "C++", "Rust", "Haskell" ,
+                "Deplhi", Question.OPTION_B,
+                false));
+
+        defaultQuestions.add(new Question((Long )null,
+                "Melyik nyelv hello word-je ez? H",
+                "HQ9+", "R", "Java" ,
+                "Omgrofl", Question.OPTION_A,
+                true));
+
+        defaultQuestions.add(new Question((Long )null,
+                "Melyik nyelv hello word-je ez? ++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.+++++++\n" +
+                        "..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>.",
+                "Brainfuck", "C++ titkos írással", "Befunge" ,
+                "LOLCODE", Question.OPTION_A,
+                true));
+
+        defaultQuestions.add(new Question((Long )null,
+                "Mikor alapították meg a Microsoftot?",
+                "1960-as évek", "1970-es évek", "1980-as évek" ,
+                "Egyéb", Question.OPTION_B,
+                false));
+
+        defaultQuestions.add(new Question((Long )null,
+                "Hány elvből áll a Neumann-elvek?",
+                "4", "5", "7" ,
+                "8", Question.OPTION_C,
+                false));
+
+        defaultQuestions.add(new Question((Long )null,
+                "Melyik évben jelent meg az első androidos telefon?",
+                "2000", "2004", "2008" ,
+                "Ezek közül egyik sem", Question.OPTION_C,
+                false));
     }
 
     public static List<Question> getDefaultQuestions() {

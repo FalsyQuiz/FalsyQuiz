@@ -60,7 +60,8 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:fontFamily="@font/bitter_regular"
-        android:textSize="16dp" />
+        android:textSize="16dp"
+        android:layout_marginBottom="@dimen/questionActivity_questionText_bottomMargin"/>
 
     <TextView
         android:id="@+id/questionActivity_infoText"
