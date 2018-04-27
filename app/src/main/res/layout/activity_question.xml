@@ -85,7 +85,7 @@
         <Button
             android:id="@+id/questionActivity_optionA_button"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
             android:layout_margin="@dimen/OptionButtonMargin"
             android:fontFamily="@font/bitter_regular"
             android:background="@drawable/answer_button" />
@@ -93,7 +93,7 @@
         <Button
             android:id="@+id/questionActivity_optionB_button"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
             android:layout_margin="@dimen/OptionButtonMargin"
             android:fontFamily="@font/bitter_regular"
             android:background="@drawable/answer_button" />
@@ -106,7 +106,7 @@
         <Button
             android:id="@+id/questionActivity_optionC_button"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
             android:layout_margin="@dimen/OptionButtonMargin"
             android:fontFamily="@font/bitter_regular"
             android:background="@drawable/answer_button" />
@@ -114,7 +114,7 @@
         <Button
             android:id="@+id/questionActivity_optionD_button"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
             android:fontFamily="@font/bitter_regular"
             android:background="@drawable/answer_button"
             android:layout_margin="@dimen/OptionButtonMargin"  />

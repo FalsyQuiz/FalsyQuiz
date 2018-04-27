@@ -20,7 +20,7 @@ import lombok.Getter;
 
 public class GameReferee implements Timer.TimerListener {
 
-    private static final long TIME_BEFORE_NEXT_QUESTION = 1500;
+    private static final long TIME_BEFORE_NEXT_QUESTION = 2500;
 
     public interface GameRefereeListener {
         void printQuestion(Question question);
@@ -36,7 +36,7 @@ public class GameReferee implements Timer.TimerListener {
         void setInfoText(String text);
     }
 
-    public static final int NUMBER_OF_LIVES = 5;
+    public static final int NUMBER_OF_LIVES = 3;
     public static final int BONUS_LIFE = 1;
     public static final int MINUS_LIFE = 1;
     public static final int PHONE_SUCCESS_THRESHOLD = 50;
@@ -60,7 +60,7 @@ public class GameReferee implements Timer.TimerListener {
         this.questions = questions;
         game = new Game();
         game.setId(0L);
-        game.setLives(1);
+        game.setLives(NUMBER_OF_LIVES);
         game.setUsedFifty(!FIFTY_USED);
         game.setUsedPhone(!PHONE_USED);
         game.setUsedSurprise(!SURPRISE_USED);
@@ -120,9 +120,18 @@ public class GameReferee implements Timer.TimerListener {
     private void checkGameState() {
         game.setNumOfQuestions(game.getNumOfQuestions() + 1);
         if (!game.gameOver() && questions.isEmpty()) {
+
             listener.win();
         } else if (game.gameOver()) {
-            listener.gameOver();
+            new Handler().postDelayed(new Runnable() {
+
+                @Override
+                public void run() {
+                    listener.gameOver();
+                }
+
+            }, TIME_BEFORE_NEXT_QUESTION);
+
         } else {
             new Handler().postDelayed(new Runnable() {
 
