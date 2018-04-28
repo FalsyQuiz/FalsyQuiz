@@ -20,4 +20,8 @@ public class VibratorEngine {
             vibratorEngine.vibrate(vibrationLength);
         }
     }
+
+    public void cancel() {
+        vibratorEngine.cancel();
+    }
 }

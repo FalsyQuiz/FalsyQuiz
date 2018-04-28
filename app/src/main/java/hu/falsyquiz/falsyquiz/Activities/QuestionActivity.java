@@ -38,6 +38,7 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
          */
         @Override
         public void onClick(View view) {
+            vibratorEngine.cancel();
             setButtonsEnability(!ENABLED);
             new Handler().postDelayed(new Runnable() {
 
