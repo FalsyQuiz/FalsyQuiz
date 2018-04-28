@@ -1,0 +1,10 @@
+hu.falsyquiz.falsyquiz.Actions
+hu.falsyquiz.falsyquiz.Activities
+hu.falsyquiz.falsyquiz.Application
+hu.falsyquiz.falsyquiz.Components
+hu.falsyquiz.falsyquiz.DataPersister.Entities
+hu.falsyquiz.falsyquiz.DataPersister.Entities.Managers
+hu.falsyquiz.falsyquiz.DataPersister.Entities.Utils
+hu.falsyquiz.falsyquiz.Game
+hu.falsyquiz.falsyquiz.Moduls
+hu.falsyquiz.falsyquiz.Tools
