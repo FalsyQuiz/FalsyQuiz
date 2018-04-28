@@ -4,15 +4,9 @@ import android.content.Intent;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import hu.falsyquiz.falsyquiz.DataPersister.Entities.Configuration;
@@ -29,6 +23,13 @@ public class MainMenuActivity extends AbstractActivity{
     @BindView(R.id.nav_view)
     NavigationView navigationView;
 
+    /**
+     * This method creates a MainMenuActivity, sets the toolbar, home button, initializes the
+     * main menu's event listeners and initializes questions if you run the application for the
+     * first time.
+     * @param savedInstanceState
+     */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +41,6 @@ public class MainMenuActivity extends AbstractActivity{
         toolbar.setTitleTextColor(getResources().getColor(R.color.white));
         getSupportActionBar().setHomeAsUpIndicator(R.mipmap.ic_menu_white_24dp);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
 
         mDrawerLayout = findViewById(R.id.drawer_layout);
 

@@ -2,20 +2,15 @@ package hu.falsyquiz.falsyquiz.DataPersister.Entities;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;
-import org.greenrobot.greendao.annotation.NotNull;
-
 import lombok.Getter;
 import lombok.Setter;
-import org.greenrobot.greendao.annotation.Generated;
 
 /**
  * Created by Peti on 2018. 03. 24..
+ * This class is responsible for representing the games.
  */
-
-
 @Entity (generateConstructors = false, generateGettersSetters = false)
 public class Game implements Parcelable {
 
@@ -53,6 +48,9 @@ public class Game implements Parcelable {
     public Game() {
     }
 
+    /**
+     * This function checks whether the game is over.
+     */
     public boolean gameOver() {
         return lives < LIVES_LOWER_BOUND;
     }

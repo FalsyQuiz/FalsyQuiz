@@ -1,7 +1,6 @@
 package hu.falsyquiz.falsyquiz.Components;
 
 import javax.inject.Singleton;
-
 import dagger.Component;
 import hu.falsyquiz.falsyquiz.Activities.AbstractActivity;
 import hu.falsyquiz.falsyquiz.Moduls.ApplicationModule;

@@ -19,13 +19,10 @@ import hu.falsyquiz.falsyquiz.R;
 import hu.falsyquiz.falsyquiz.Tools.SongPlayer;
 import hu.falsyquiz.falsyquiz.Tools.VibratorEngine;
 import lombok.AllArgsConstructor;
-
 import static hu.falsyquiz.falsyquiz.Actions.Actions.playRandomSound;
 import static hu.falsyquiz.falsyquiz.Actions.Actions.vibrate;
 
 public class QuestionActivity extends AbstractActivity implements GameReferee.GameRefereeListener, InfoTextMessage.MessageListener {
-
-
 
     @AllArgsConstructor
     public class AnswerListener implements View.OnClickListener {
@@ -113,6 +110,12 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
     private GameReferee gameReferee;
     private SongPlayer songPlayer;
 
+    /**
+     * This method creates a QuestionActivity, initializes the information messages that appear
+     * during the application, initializes the onClickListeners and a GameReferee which starts
+     * playing.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -398,7 +401,7 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
 
     /**
      * This method sets the availability of all of the buttons based on its parameter.
-     * @param enabled
+     * @param enabled The desired availability of the buttons.
      */
     @Override
     public void setButtonsEnability(boolean enabled) {
@@ -448,6 +451,9 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
         textFade.setStartOffset(2000 + textFade.getStartOffset());
     }
 
+    /**
+     * This function returns the QuestionActivity.
+     */
     @Override
     public AbstractActivity getActivity() {
         return this;
