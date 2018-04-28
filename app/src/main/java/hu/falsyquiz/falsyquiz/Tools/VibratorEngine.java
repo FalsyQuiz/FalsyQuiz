@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Vibrator;
 
 public class VibratorEngine {
+
     public static final int SHORT_VIBRATION_TIME = 250;
     public static final int LONG_VIBRATION_TIME = 500;
     public static final int EXTRA_SUPER_LONG_TIME = 10000;
