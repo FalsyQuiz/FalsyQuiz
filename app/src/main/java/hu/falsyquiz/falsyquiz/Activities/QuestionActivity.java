@@ -1,8 +1,11 @@
 package hu.falsyquiz.falsyquiz.Activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.Settings;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.Button;
@@ -16,6 +19,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import hu.falsyquiz.falsyquiz.Actions.Actions;
+import hu.falsyquiz.falsyquiz.Application.BaseApplication;
 import hu.falsyquiz.falsyquiz.DataPersister.Entities.InfoTextMessage;
 import hu.falsyquiz.falsyquiz.DataPersister.Entities.Question;
 import hu.falsyquiz.falsyquiz.Game.GameReferee;
@@ -24,7 +28,8 @@ import hu.falsyquiz.falsyquiz.Tools.SongPlayer;
 import hu.falsyquiz.falsyquiz.Tools.VibratorEngine;
 import lombok.AllArgsConstructor;
 
-public class QuestionActivity extends AbstractActivity implements GameReferee.GameRefereeListener, InfoTextMessage.MessageListener {
+public class QuestionActivity extends AbstractActivity implements GameReferee.GameRefereeListener,
+        InfoTextMessage.MessageListener, Actions.ActionsListener {
 
     @AllArgsConstructor
     public class AnswerListener implements View.OnClickListener {
@@ -75,6 +80,10 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
     public static boolean ENABLED = true;
     public static final int NOT_ENOUGH_TIME_LEFT = 10;
     public static final int VERY_REALLY_NOT_ENOUGH_TIME_LEFT = 5;
+    public static final int ACTIONS_BOUND = 16;
+    public static final int NUM_OF_ACTIONS = 3;
+    public static final int NUM_OF_BONUS_HELP_OPTIONS = 3;
+    public static final int SHOW_ANSWERS_AGAIN_TIME = 6;
 
     @BindView(R.id.questionActivity_questionText)
     TextView questionText;
@@ -112,6 +121,9 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
     private GameReferee gameReferee;
     private SongPlayer songPlayer;
 
+    private int actualAction;
+
+    @Inject
     protected Actions actions;
 
     /**
@@ -125,6 +137,9 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question);
+        BaseApplication.getInstance().getMainComponent().inject(this);
+        actions.setActionsListener(this);
+
         ButterKnife.bind(this);
         InfoTextMessage.initTextMessages(this);
 
@@ -132,7 +147,13 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
         gameReferee.play();
 
         initOnClickListeners();
+    }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        stop();
+        finish();
     }
 
     /**
@@ -145,15 +166,21 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
         optionC.setOnClickListener(new AnswerListener(Question.OPTION_C));
         optionD.setOnClickListener(new AnswerListener(Question.OPTION_D));
         phone.setOnClickListener(new PhoneCallListener());
+
         fifty.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                fifty.setVisibility(View.INVISIBLE);
+                gameReferee.usedFifty();
                 fifty();
             }
         });
+
         surprise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                surprise.setVisibility(View.INVISIBLE);
+                gameReferee.usedSurpriseHelp();
                 surprise();
             }
         });
@@ -181,6 +208,7 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
     public void printQuestion(Question question) {
         if (songPlayer != null)
             songPlayer.stop();
+        actions.stopSound();
         questionText.setText(question.getQuestion());
         optionA.setText(question.getOptionA());
         optionB.setText(question.getOptionB());
@@ -229,7 +257,7 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
      */
     private void surprise() {
         Random random = new Random();
-        int randomNumber = random.nextInt(5);
+        int randomNumber = random.nextInt(NUM_OF_BONUS_HELP_OPTIONS);
         switch (randomNumber) {
             case 0:
                 actions.vibrate(VibratorEngine.LONG_VIBRATION_TIME);
@@ -238,15 +266,8 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
                 actions.playRandomSound();
                 break;
             case 2:
-
+                fifty();
                 break;
-            case 3:
-
-                break;
-            case 4:
-
-                break;
-            //...
         }
     }
 
@@ -256,6 +277,7 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
     @Override
     public void gameOver() {
         songPlayer.stop();
+        actions.stopSound();
         Intent intent = new Intent(this, GameOverActivity.class);
         intent.putExtra(GameOverActivity.EXTRA_GAMER_KEY, gameReferee.getGame());
         clearAndStartActivity(intent);
@@ -267,6 +289,7 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
     @Override
     public void win() {
         songPlayer.stop();
+        actions.stopSound();
         Intent intent = new Intent(this, GameOverActivity.class);
         intent.putExtra(GameOverActivity.EXTRA_GAMER_KEY, gameReferee.getGame());
         clearAndStartActivity(intent);
@@ -384,14 +407,33 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
     public void tick(long timeLeft) {
         long timeLeftSec = timeLeft / 1000;
         this.timeLeft.setText(timeLeftSec < 10 ? "0" + timeLeftSec : timeLeftSec + "");
-        if ( timeLeftSec == NOT_ENOUGH_TIME_LEFT ) {
+
+        if ( timeLeftSec == NOT_ENOUGH_TIME_LEFT) {
             songPlayer = new SongPlayer(this, R.raw.female_scream);
             songPlayer.playSong();
             vibratorEngine.vibrate(VibratorEngine.EXTRA_SUPER_LONG_TIME);
         }
+
         if ( timeLeftSec == VERY_REALLY_NOT_ENOUGH_TIME_LEFT ) {
             songPlayer = new SongPlayer(this, R.raw.female_giving_birth);
             songPlayer.playSong();
+        }
+
+        if (timeLeftSec == ACTIONS_BOUND) {
+            Random rndAction = new Random();
+            actualAction = rndAction.nextInt(Actions.NUM_OF_ACTIONS);
+            switch (actualAction) {
+                case Actions.RANDOM_SONG_ACTION:
+                    actions.playRandomSound();
+                    break;
+                case Actions.HIDE_ANSWERS_ACTION:
+                    actions.hideAnswers();
+            }
+
+        }
+
+        if (actualAction == Actions.HIDE_ANSWERS_ACTION && timeLeftSec == SHOW_ANSWERS_AGAIN_TIME) {
+            actions.showAnswers();
         }
     }
 
@@ -456,11 +498,65 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
         textFade.setStartOffset(2000 + textFade.getStartOffset());
     }
 
+    private void stop() {
+        actions.stopSound();
+        gameReferee.finish();
+        if (songPlayer != null) {
+            songPlayer.stop();
+        }
+    }
+
     /**
      * This function returns the QuestionActivity.
      */
     @Override
     public AbstractActivity getActivity() {
         return this;
+    }
+
+    @Override
+    public Context getContext() {
+        return this;
+    }
+
+    @Override
+    public void hideAnswers() {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                optionA.setVisibility(View.INVISIBLE);
+                optionB.setVisibility(View.INVISIBLE);
+                optionC.setVisibility(View.INVISIBLE);
+                optionD.setVisibility(View.INVISIBLE);
+                fifty.setVisibility(View.INVISIBLE);
+                surprise.setVisibility(View.INVISIBLE);
+                phone.setVisibility(View.INVISIBLE);
+            }
+        });
+    }
+
+    @Override
+    public void showAnswers() {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                optionA.setVisibility(View.VISIBLE);
+                optionB.setVisibility(View.VISIBLE);
+                optionC.setVisibility(View.VISIBLE);
+                optionD.setVisibility(View.VISIBLE);
+
+                if (!gameReferee.getGame().getUsedFifty()) {
+                    fifty.setVisibility(View.VISIBLE);
+                }
+
+                if(!gameReferee.getGame().getUsedSurprise()) {
+                    surprise.setVisibility(View.VISIBLE);
+                }
+
+                if(!gameReferee.getGame().getUsedPhone()) {
+                    phone.setVisibility(View.VISIBLE);
+                }
+            }
+        });
     }
 }

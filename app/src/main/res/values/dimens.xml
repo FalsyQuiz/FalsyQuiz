@@ -14,4 +14,5 @@
     <dimen name="gameOverActivity_percentageText_leftMargin">40dp</dimen>
     <dimen name="gameOverActivity_picture_topMargin">20dp</dimen>
     <dimen name="questionActivity_questionText_bottomMargin">40dp</dimen>
+    <dimen name="splashActivity_logo_size">200dp</dimen>
 </resources>

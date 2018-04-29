@@ -88,7 +88,8 @@ public class GameReferee implements Timer.TimerListener {
         listener.printQuestion(actualQuestion);
         if(actualQuestion.getBonus()) listener.setInfoText(InfoTextMessage
                 .getTextMessage(R.string.questionActivity_bonusQuestion_text));
-        startTimer(Timer.DEFAULT_NORMAL_TIME);
+
+        startTimer((random.nextInt(Timer.QUESTION_TIME_SEC_CORRIG) + Timer.QUESTION_TIME_SEC_LOWER_BOUND) * 1000);
         listener.setButtonsEnability(true);
     }
 
@@ -127,8 +128,16 @@ public class GameReferee implements Timer.TimerListener {
                     availableAnswers.get(rnd.nextInt(availableAnswers.size()))
             );
         } else listener.phoneCallShowAnswer(actualQuestion.getAnswer());
-        game.setUsedPhone(true);
+        game.setUsedPhone(PHONE_USED);
         listener.setInfoText(InfoTextMessage.getPhoneCallMessage());
+    }
+
+    public void usedSurpriseHelp() {
+        game.setUsedSurprise(SURPRISE_USED);
+    }
+
+    public void usedFifty() {
+        game.setUsedFifty(FIFTY_USED);
     }
 
     /**
@@ -190,4 +199,7 @@ public class GameReferee implements Timer.TimerListener {
         checkGameState();
     }
 
+    public void finish() {
+        timer.stop();
+    }
 }

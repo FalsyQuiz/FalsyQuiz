@@ -3,6 +3,8 @@
     package="hu.falsyquiz.falsyquiz">
 
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name=".Application.BaseApplication"
@@ -27,13 +29,17 @@
         <activity
             android:name=".Activities.GameOverActivity"
             android:parentActivityName=".Activities.MainMenuActivity"
-            android:screenOrientation="landscape"/>
+            android:screenOrientation="landscape" />
         <activity
             android:name=".Activities.HelpActivity"
             android:parentActivityName=".Activities.MainMenuActivity" />
         <activity
             android:name=".Activities.ResultsActivity"
             android:parentActivityName=".Activities.MainMenuActivity" />
+
+        <activity
+            android:name=".Activities.PermissionDeniedActivity"
+            android:parentActivityName=".Activities.MainMenuActivity"/>
     </application>
 
 </manifest>

@@ -10,6 +10,7 @@
     <string name="gameOverActivity_failed_text">Sajnáljuk, ez most nem jött össze!! :(</string>
     <string name="gameOverActivity_percentageText">Annak a valószínűsége, hogy sikeresen teljesíted a PTI szakot: </string>
     <string name="gameOverActivity_win_text">Gratulálunk!! :)</string>
+    <string name="permissionDeniedActivity_permissionDenied_text">FalsyQuiz needs permissions to work!</string>
 
     <string-array name="correctAnswer_text_array">
         <item>Helyes válasz!</item>

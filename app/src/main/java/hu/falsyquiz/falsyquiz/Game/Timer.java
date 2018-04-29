@@ -15,6 +15,8 @@ public class Timer {
     public static final long DEFAULT_SHORT_TIME = 10000;
     public static final long DEFAULT_NORMAL_TIME = 25000;
     public static final long DEFAULT_TICK_TIME = 1000;
+    public static final int QUESTION_TIME_SEC_LOWER_BOUND = 18;
+    public static final int QUESTION_TIME_SEC_CORRIG = 12;
 
     private CountDownTimer countDownTimer;
 

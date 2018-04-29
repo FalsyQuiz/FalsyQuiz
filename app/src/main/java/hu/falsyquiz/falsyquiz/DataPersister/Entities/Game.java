@@ -6,6 +6,7 @@ import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;
 import lombok.Getter;
 import lombok.Setter;
+import org.greenrobot.greendao.annotation.Generated;
 
 /**
  * Created by Peti on 2018. 03. 24..
