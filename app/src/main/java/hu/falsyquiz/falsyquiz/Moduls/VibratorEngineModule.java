@@ -1,12 +1,11 @@
 package hu.falsyquiz.falsyquiz.Moduls;
 
 import android.content.Context;
-
 import javax.inject.Singleton;
-
 import dagger.Module;
 import dagger.Provides;
 import hu.falsyquiz.falsyquiz.Tools.VibratorEngine;
+
 
 @Module(includes = ApplicationModule.class)
 public class VibratorEngineModule {

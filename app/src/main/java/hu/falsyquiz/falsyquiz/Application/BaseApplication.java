@@ -1,11 +1,7 @@
 package hu.falsyquiz.falsyquiz.Application;
 
 import android.app.Application;
-import android.graphics.Typeface;
-import android.widget.TextView;
-
 import com.facebook.stetho.Stetho;
-
 import hu.falsyquiz.falsyquiz.Components.DaggerMainComponent;
 import hu.falsyquiz.falsyquiz.Components.MainComponent;
 import hu.falsyquiz.falsyquiz.Moduls.ApplicationModule;

@@ -5,12 +5,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import hu.falsyquiz.falsyquiz.DataPersister.Entities.Game;
 import hu.falsyquiz.falsyquiz.R;
 import hu.falsyquiz.falsyquiz.Tools.SongPlayer;
+
+
+/**
+ * This activity is responsible for the end of the game.
+ */
 
 public class GameOverActivity extends AbstractActivity {
 
@@ -30,6 +34,11 @@ public class GameOverActivity extends AbstractActivity {
 
     private SongPlayer songPlayer;
 
+    /**
+     * This method creates a GameOverActivity and sets the background color to white.
+     * @param savedInstanceState
+     */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +57,9 @@ public class GameOverActivity extends AbstractActivity {
         }
     }
 
+    /**
+     * This method stops the currently playing sound.
+     */
     @Override
     public void onPause() {
         super.onPause();

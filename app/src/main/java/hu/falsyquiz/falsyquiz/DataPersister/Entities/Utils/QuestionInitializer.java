@@ -2,17 +2,20 @@ package hu.falsyquiz.falsyquiz.DataPersister.Entities.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import hu.falsyquiz.falsyquiz.DataPersister.Entities.Question;
 
 /**
  * Created by Peti on 2018. 03. 24..
+ * This class is responsible for initiating the questions.
  */
 
 public class QuestionInitializer {
 
     public static List<Question> defaultQuestions;
 
+    /**
+     * This method initiating the default questions.
+     */
     public static void initDefaultQuestions() {
         defaultQuestions = new ArrayList<>();
 
@@ -196,6 +199,9 @@ public class QuestionInitializer {
                 false));
     }
 
+    /**
+     * This function returns with the default questions.
+     */
     public static List<Question> getDefaultQuestions() {
         if (defaultQuestions == null) {
             initDefaultQuestions();
