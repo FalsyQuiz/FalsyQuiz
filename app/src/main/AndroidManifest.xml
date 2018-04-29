@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
     package="hu.falsyquiz.falsyquiz">
 
     <uses-permission android:name="android.permission.VIBRATE" />
@@ -21,7 +22,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.MainMenuActivity" />
+        <activity
+            android:name=".Activities.MainMenuActivity" />
         <activity
             android:name=".Activities.QuestionActivity"
             android:parentActivityName=".Activities.MainMenuActivity"
@@ -39,7 +41,7 @@
 
         <activity
             android:name=".Activities.PermissionDeniedActivity"
-            android:parentActivityName=".Activities.MainMenuActivity"/>
+            android:parentActivityName=".Activities.MainMenuActivity" />
     </application>
 
 </manifest>

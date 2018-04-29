@@ -11,6 +11,8 @@
     <string name="gameOverActivity_percentageText">Annak a valószínűsége, hogy sikeresen teljesíted a PTI szakot: </string>
     <string name="gameOverActivity_win_text">Gratulálunk!! :)</string>
     <string name="permissionDeniedActivity_permissionDenied_text">FalsyQuiz needs permissions to work!</string>
+    <string name="gameCard_looseText">Vesztett :(</string>
+    <string name="gameCard_winText">Nyert :)</string>
 
     <string-array name="correctAnswer_text_array">
         <item>Helyes válasz!</item>
