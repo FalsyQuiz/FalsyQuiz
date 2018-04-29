@@ -6,6 +6,7 @@ import org.greenrobot.greendao.annotation.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import org.greenrobot.greendao.annotation.Generated;
 
 /**
  * Entity for questions.

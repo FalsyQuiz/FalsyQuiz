@@ -1,7 +1,11 @@
 package hu.falsyquiz.falsyquiz.Activities;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.provider.Settings;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.os.Bundle;
@@ -17,6 +21,8 @@ import hu.falsyquiz.falsyquiz.R;
 public class MainMenuActivity extends AbstractActivity{
 
     public static final boolean MENU_ITEM_CHECKED = true;
+
+    public static final int REQUEST_CODE = 250;
 
     private DrawerLayout mDrawerLayout;
 
@@ -50,7 +56,6 @@ public class MainMenuActivity extends AbstractActivity{
             initQuestions();
             dataManager.createConfiguration(new Configuration(null, Configuration.INSTALLED_KEY, Configuration.INSTALLED_VALUE));
         }
-
     }
 
     /**
