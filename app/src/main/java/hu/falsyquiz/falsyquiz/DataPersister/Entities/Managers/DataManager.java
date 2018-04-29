@@ -5,6 +5,7 @@ import java.util.List;
 import hu.falsyquiz.falsyquiz.DataPersister.Entities.Configuration;
 import hu.falsyquiz.falsyquiz.DataPersister.Entities.Game;
 import hu.falsyquiz.falsyquiz.DataPersister.Entities.Question;
+import lombok.Getter;
 
 /**
  * This class manages the class which is used to manage the database and stores the questions in
@@ -17,9 +18,12 @@ public class DataManager {
 
     private List<Question> questions;
 
+    private List<Game> games;
+
     public DataManager(DatabaseManager databaseManager) {
         this.databaseManager = databaseManager;
         questions = databaseManager.findAllQuestions();
+        games = databaseManager.findAllGames();
     }
 
     /**
@@ -66,9 +70,10 @@ public class DataManager {
      */
     public void updateQuestion(Question question) {
         databaseManager.updateQuestion(question);
-        for (Question q : questions) {
-            if (q.getId().equals(question.getId())) {
-                q = question;
+        for (int i = 0; i < questions.size(); ++i) {
+            if (questions.get(i).getId().equals(question.getId())) {
+                questions.set(i, question);
+                break;
             }
         }
     }
@@ -79,6 +84,7 @@ public class DataManager {
      */
     public void deleteAllQuestions() {
         databaseManager.deleteAllQuestions();
+        questions.clear();
     }
 
     /**
@@ -86,7 +92,7 @@ public class DataManager {
      * findAllGames function.
      */
     public List<Game> getAllGames() {
-        return databaseManager.findAllGames();
+        return games;
     }
 
     /**
@@ -98,6 +104,7 @@ public class DataManager {
         game.setId(null);
         Long id = databaseManager.insertGame(game);
         game.setId(id);
+        games.add(game);
     }
 
     /**
@@ -107,6 +114,12 @@ public class DataManager {
      */
     public void updataGame(Game game) {
         databaseManager.updateGame(game);
+        for (int i = 0; i < games.size(); ++i) {
+            if (game.getId().equals(games.get(i).getId())) {
+                games.set(i, game);
+                break;
+            }
+        }
     }
 
     /**
