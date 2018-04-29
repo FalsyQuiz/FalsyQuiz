@@ -4,6 +4,7 @@ import android.app.Application;
 import com.facebook.stetho.Stetho;
 import hu.falsyquiz.falsyquiz.Components.DaggerMainComponent;
 import hu.falsyquiz.falsyquiz.Components.MainComponent;
+import hu.falsyquiz.falsyquiz.Moduls.ActionsModule;
 import hu.falsyquiz.falsyquiz.Moduls.ApplicationModule;
 import hu.falsyquiz.falsyquiz.Moduls.StorageModule;
 import hu.falsyquiz.falsyquiz.Moduls.VibratorEngineModule;
@@ -30,6 +31,7 @@ public class BaseApplication extends Application {
                 .applicationModule(new ApplicationModule(this))
                 .storageModule(new StorageModule())
                 .vibratorEngineModule(new VibratorEngineModule())
+                .actionsModule(new ActionsModule())
                 .build();
     }
 

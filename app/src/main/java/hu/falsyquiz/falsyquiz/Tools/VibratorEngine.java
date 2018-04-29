@@ -7,6 +7,7 @@ import android.os.Vibrator;
  * This class is responsible for providing the Vibrator.
  */
 public class VibratorEngine {
+
     public static final int SHORT_VIBRATION_TIME = 250;
     public static final int LONG_VIBRATION_TIME = 500;
     public static final int EXTRA_SUPER_LONG_TIME = 10000;
@@ -25,5 +26,9 @@ public class VibratorEngine {
         if (vibratorEngine != null) {
             vibratorEngine.vibrate(vibrationLength);
         }
+    }
+
+    public void cancel() {
+        vibratorEngine.cancel();
     }
 }

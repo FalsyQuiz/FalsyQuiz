@@ -10,8 +10,12 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Random;
+
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import hu.falsyquiz.falsyquiz.Actions.Actions;
 import hu.falsyquiz.falsyquiz.DataPersister.Entities.InfoTextMessage;
 import hu.falsyquiz.falsyquiz.DataPersister.Entities.Question;
 import hu.falsyquiz.falsyquiz.Game.GameReferee;
@@ -19,8 +23,6 @@ import hu.falsyquiz.falsyquiz.R;
 import hu.falsyquiz.falsyquiz.Tools.SongPlayer;
 import hu.falsyquiz.falsyquiz.Tools.VibratorEngine;
 import lombok.AllArgsConstructor;
-import static hu.falsyquiz.falsyquiz.Actions.Actions.playRandomSound;
-import static hu.falsyquiz.falsyquiz.Actions.Actions.vibrate;
 
 public class QuestionActivity extends AbstractActivity implements GameReferee.GameRefereeListener, InfoTextMessage.MessageListener {
 
@@ -35,6 +37,7 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
          */
         @Override
         public void onClick(View view) {
+            vibratorEngine.cancel();
             setButtonsEnability(!ENABLED);
             new Handler().postDelayed(new Runnable() {
 
@@ -73,7 +76,6 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
     public static final int NOT_ENOUGH_TIME_LEFT = 10;
     public static final int VERY_REALLY_NOT_ENOUGH_TIME_LEFT = 5;
 
-
     @BindView(R.id.questionActivity_questionText)
     TextView questionText;
 
@@ -110,12 +112,15 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
     private GameReferee gameReferee;
     private SongPlayer songPlayer;
 
+    protected Actions actions;
+
     /**
      * This method creates a QuestionActivity, initializes the information messages that appear
      * during the application, initializes the onClickListeners and a GameReferee which starts
      * playing.
      * @param savedInstanceState
      */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -227,10 +232,10 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
         int randomNumber = random.nextInt(5);
         switch (randomNumber) {
             case 0:
-                vibrate(this, 2000);
+                actions.vibrate(VibratorEngine.LONG_VIBRATION_TIME);
                 break;
             case 1:
-                playRandomSound();
+                actions.playRandomSound();
                 break;
             case 2:
 
