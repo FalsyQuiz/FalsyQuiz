@@ -95,6 +95,7 @@ public class DataManager {
      * @game The game to be inserted.
      */
     public void createGame(Game game) {
+        game.setId(null);
         Long id = databaseManager.insertGame(game);
         game.setId(id);
     }

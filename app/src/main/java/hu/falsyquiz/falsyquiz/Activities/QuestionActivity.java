@@ -278,6 +278,7 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
     public void gameOver() {
         songPlayer.stop();
         actions.stopSound();
+        dataManager.createGame(gameReferee.getGame());
         Intent intent = new Intent(this, GameOverActivity.class);
         intent.putExtra(GameOverActivity.EXTRA_GAMER_KEY, gameReferee.getGame());
         clearAndStartActivity(intent);
