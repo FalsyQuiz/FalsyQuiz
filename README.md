@@ -2,20 +2,20 @@
 
 # FalsyQuiz
 
-* [Bevezetés](README.md#intro)
-* [Funkciók](README.md#features)
-* [Platform](README.md#platform)
-* [Build](README.md#build)
- * [Travis CI](#travis)
-* [Tesztek](README.md#test)
-* [Fejlesztői eszközök](README.md#devTools)
-  * [Lint](README.md#lint)
-  * [Javadoc](README.md#javadoc)
-* [Deploy](README.md#deploy)
-* [Telepítés](README.md#install)
-* [Megjegyzés](README.md#notification)
-* [Ismert bug-ok](README.md#bugs)
-* [Fejlesztők](README.md#developers)
+* [Bevezetés](README.md#Bevezetés)
+* [Funkciók](README.md#Funkciók)
+* [Platform](README.md#Platform)
+* [Build](README.md#Build)
+ * [Travis CI](#Travis CI)
+* [Tesztek](README.md#Tesztek)
+* [Fejlesztői eszközök](README.md#Fejlesztői eszközök)
+  * [Lint](README.md#Lint)
+  * [Javadoc](README.md#Javadoc)
+* [Deploy](README.md#Deploy)
+* [Telepítés](README.md#Telepítés)
+* [Megjegyzés](README.md#Megjegyzés)
+* [Ismert bug-ok](README.md#Ismert bug-ok)
+* [Fejlesztők](README.md#Fejlesztők)
 
 ## [Bevezetés](#intro)
 
@@ -26,7 +26,7 @@ A projekt célja egy kvízjáték elkészítése Android rendszerre. A játék k
 A program indításakor rövid üdvözlőképernyő után a főmenübe jutunk. A menü a állapotsorban lévő ikonnal hozható elő. Az Új játékra való kattintás után elindul a játék, megjelenik az első kérdés 4 válaszlehetőséggel, melyek közül pontosan egy helyes. A kérdés megválaszolására 18 és 30 mp között véletlenszerűen kiválasztott idő áll rendelkezésre, ha nem sikerül adott időn be,ül helyesen megválaszolni a kérdést, akkor a játékos életet veszít. Helyes válasz esetén, illetve ha a játékosnak van még élete, akkor új kérdést kap, egészen addig amíg az összes kérdés el nem fogy, ekkor megnyerte a játékot. Ha a játkos életei elfogynak, akkor a kátéknak vége. Játék közben az alkalmazás különféle "akciókkal" próbálja megzavarni a kérdés megválaszolását (zajok, válaszok eltüntetése). Játék során 2+1 segítségre van lehetőség. Egy felezés ami 2 válaszlehetőséget elvesz, a telefonos segítség a helyes választ igyekszik megmutatni, egy Meglepetés segítség pedig véletlenszerűen vagy segít vagy nehezít. A segítségek a képernyő tetején lévő gombok segítségével aktiválhatóak.
 Az eredmények fülön az eddigi játékok és azok eredményei találhatóak meg.
 
-![Main_menu](menu.png)
+![Main_menu](menu_small.png)
 
 ## [Platform](#platform)
 
@@ -73,7 +73,7 @@ A build-elt alkalmazás közzététele automatikusan megtörténi a build script
 
 Az alkalmazás a build-elt apk-t a megadott platformra letöltve telepíthető. A telepítéshez emulátor is használható, de mindenképpen engedélyezni kell az Ismeretlen forrásokból való telepítést a Beállítások menü Biztonság füle alatt, lásd az alábbi képet. A szükséges engedélyek megadása után az apk fájl kiválasztásával a Telepítés lehetőségre kattintva automatikusan elindul a telepítés és az alkalmazás az eszköz kapacitásától függően néhány másodperc alatt kész a használatra.
 
-![Security](security.png)
+![Security](security_small.png)
 
 ## [Megjegyzés](#notification)
 
