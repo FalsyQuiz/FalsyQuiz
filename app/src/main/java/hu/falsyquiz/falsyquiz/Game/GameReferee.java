@@ -1,15 +1,11 @@
 package hu.falsyquiz.falsyquiz.Game;
 
-
 import java.util.ArrayList;
 import android.os.Handler;
 import java.util.List;
 import java.util.Random;
-
-import hu.falsyquiz.falsyquiz.Activities.AbstractActivity;
 import hu.falsyquiz.falsyquiz.DataPersister.Entities.Game;
 import hu.falsyquiz.falsyquiz.DataPersister.Entities.Question;
-
 import hu.falsyquiz.falsyquiz.DataPersister.Entities.InfoTextMessage;
 import hu.falsyquiz.falsyquiz.R;
 import lombok.Getter;
@@ -96,8 +92,12 @@ public class GameReferee implements Timer.TimerListener {
         listener.setButtonsEnability(true);
     }
 
+    /**
+     * This method answers the current question. Stops the timer, sets the lives, sets the
+     * information text and check whether the game is over or not.
+     * @param answer The player's answer.
+     */
     public void answerQuestion(String answer) {
-
        timer.stop();
        if (actualQuestion.getAnswer().equals(answer)) {
            if (actualQuestion.getBonus()) {
@@ -114,6 +114,10 @@ public class GameReferee implements Timer.TimerListener {
        checkGameState();
     }
 
+    /**
+     * This method implements the phone help.
+     * @param availableAnswers Answers that phone help can suggest.
+     */
     public void usePhoneCall(ArrayList<String> availableAnswers) {
         Random rnd = new Random();
         if (!availableAnswers.contains(actualQuestion.getAnswer())
@@ -166,11 +170,18 @@ public class GameReferee implements Timer.TimerListener {
         newQuestion();
     }
 
+    /**
+     * This method ticks the timer.
+     * @param timeLeft How much time is left to answer the current question.
+     */
     @Override
     public void tick(long timeLeft) {
         listener.tick(timeLeft);
     }
 
+    /**
+     * This method is responsible for changes occurring at the end of a question.
+     */
     @Override
     public void end() {
         game.setLives(game.getLives() - MINUS_LIFE);

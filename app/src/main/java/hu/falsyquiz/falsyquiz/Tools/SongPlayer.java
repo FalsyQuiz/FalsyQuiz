@@ -5,6 +5,7 @@ import android.media.MediaPlayer;
 
 /**
  * Created by Peti on 2018. 04. 23..
+ * This class is responsible for playing the songs.
  */
 
 public class SongPlayer {
@@ -15,10 +16,16 @@ public class SongPlayer {
         mediaPlayer = MediaPlayer.create(context, songResourceId);
     }
 
+    /**
+     * This method starts playing the song.
+     */
     public void playSong() {
         mediaPlayer.start();
     }
 
+    /**
+     * This method stops the song being played.
+     */
     public void stop() {
         mediaPlayer.stop();
     }

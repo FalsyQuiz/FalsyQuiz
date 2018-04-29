@@ -2,18 +2,12 @@ package hu.falsyquiz.falsyquiz.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Window;
 import android.view.WindowManager;
-
 import javax.inject.Inject;
-
 import hu.falsyquiz.falsyquiz.Application.BaseApplication;
 import hu.falsyquiz.falsyquiz.DataPersister.Entities.Managers.DataManager;
-import hu.falsyquiz.falsyquiz.R;
 import hu.falsyquiz.falsyquiz.Tools.VibratorEngine;
 
 
@@ -28,6 +22,11 @@ public class AbstractActivity extends AppCompatActivity {
 
     @Inject
     protected VibratorEngine vibratorEngine;
+
+    /**
+     * This method creates an AbstractActivity
+     * @param savedInstanceState
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

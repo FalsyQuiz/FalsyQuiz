@@ -5,6 +5,7 @@ import hu.falsyquiz.falsyquiz.Tools.VibratorEngine;
 
 /**
  * Created by dave on 2018.04.24..
+ * This class collects the actions that appear in the game.
  */
 
 public class Actions {
@@ -16,6 +17,11 @@ public class Actions {
         this.vibratorEngine = vibratorEngine;
     }
 
+    /**
+     * This method vibrates the phone in the corresponding activity for the time specified as the
+     * parameter.
+     * @param milliseconds For how many seconds the vibration will hold.
+     */
     public void vibrate(int milliseconds) {
         vibratorEngine.vibrate(milliseconds);
     }

@@ -114,6 +114,13 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
 
     protected Actions actions;
 
+    /**
+     * This method creates a QuestionActivity, initializes the information messages that appear
+     * during the application, initializes the onClickListeners and a GameReferee which starts
+     * playing.
+     * @param savedInstanceState
+     */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -399,7 +406,7 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
 
     /**
      * This method sets the availability of all of the buttons based on its parameter.
-     * @param enabled
+     * @param enabled The desired availability of the buttons.
      */
     @Override
     public void setButtonsEnability(boolean enabled) {
@@ -449,6 +456,9 @@ public class QuestionActivity extends AbstractActivity implements GameReferee.Ga
         textFade.setStartOffset(2000 + textFade.getStartOffset());
     }
 
+    /**
+     * This function returns the QuestionActivity.
+     */
     @Override
     public AbstractActivity getActivity() {
         return this;

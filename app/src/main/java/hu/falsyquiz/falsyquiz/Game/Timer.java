@@ -2,6 +2,9 @@ package hu.falsyquiz.falsyquiz.Game;
 
 import android.os.CountDownTimer;
 
+/**
+ * This class is responsible for managing the timer.
+ */
 public class Timer {
 
     public interface TimerListener {
@@ -28,6 +31,9 @@ public class Timer {
         initCountDownTimer(time, tickTime);
     }
 
+    /**
+     * This method initializes the timer.
+     */
     private void initCountDownTimer(long time, long tickTime) {
         countDownTimer = new CountDownTimer(time, tickTime) {
 
@@ -43,10 +49,16 @@ public class Timer {
         };
     }
 
+    /**
+     * This method starts the timer.
+     */
     public void start() {
         countDownTimer.start();
     }
 
+    /**
+     * This method stops the timer.
+     */
     public void stop() {
         countDownTimer.cancel();
     }

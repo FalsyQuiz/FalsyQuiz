@@ -1,9 +1,7 @@
 package hu.falsyquiz.falsyquiz.Application;
 
 import android.app.Application;
-
 import com.facebook.stetho.Stetho;
-
 import hu.falsyquiz.falsyquiz.Components.DaggerMainComponent;
 import hu.falsyquiz.falsyquiz.Components.MainComponent;
 import hu.falsyquiz.falsyquiz.Moduls.ActionsModule;
