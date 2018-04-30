@@ -23,7 +23,7 @@ A projekt célja egy kvízjáték elkészítése Android rendszerre. A játék k
 
 ## [Funkciók](#features)
 
-A program indításakor rövid üdvözlőképernyő után a főmenübe jutunk. A menü a állapotsorban lévő ikonnal hozható elő. Az Új játékra való kattintás után elindul a játék, megjelenik az első kérdés 4 válaszlehetőséggel, melyek közül pontosan egy helyes. A kérdés megválaszolására 18 és 30 mp között véletlenszerűen kiválasztott idő áll rendelkezésre, ha nem sikerül adott időn be,ül helyesen megválaszolni a kérdést, akkor a játékos életet veszít. Helyes válasz esetén, illetve ha a játékosnak van még élete, akkor új kérdést kap, egészen addig amíg az összes kérdés el nem fogy, ekkor megnyerte a játékot. Ha a játkos életei elfogynak, akkor a kátéknak vége. Játék közben az alkalmazás különféle "akciókkal" próbálja megzavarni a kérdés megválaszolását (zajok, válaszok eltüntetése). Játék során 2+1 segítségre van lehetőség. Egy felezés ami 2 válaszlehetőséget elvesz, a telefonos segítség a helyes választ igyekszik megmutatni, egy Meglepetés segítség pedig véletlenszerűen vagy segít vagy nehezít. A segítségek a képernyő tetején lévő gombok segítségével aktiválhatóak.
+A program indításakor rövid üdvözlőképernyő után a főmenübe jutunk. A menü az állapotsorban lévő ikonnal hozható elő. Az Új játékra való kattintás után elindul a játék, megjelenik az első kérdés 4 válaszlehetőséggel, melyek közül pontosan egy helyes. A kérdés megválaszolására 18 és 30 mp között véletlenszerűen kiválasztott idő áll rendelkezésre, ha nem sikerül adott időn belül helyesen megválaszolni a kérdést, akkor a játékos életet veszít. Helyes válasz esetén, illetve ha a játékosnak van még élete, akkor új kérdést kap, egészen addig amíg az összes kérdés el nem fogy, ekkor megnyerte a játékot. Ha a játékos életei elfogynak, akkor a játéknak vége. Játék közben az alkalmazás különféle "akciókkal" próbálja megzavarni a kérdés megválaszolását (zajok, válaszok eltüntetése). Játék során 2+1 segítségre van lehetőség. Egy felezés ami 2 válaszlehetőséget elvesz, a telefonos segítség a helyes választ igyekszik megmutatni, egy Meglepetés segítség pedig véletlenszerűen vagy segít vagy nehezít. A segítségek a képernyő tetején lévő gombok segítségével aktiválhatóak.
 Az eredmények fülön az eddigi játékok és azok eredményei találhatóak meg.
 
 ![Main_menu](menu_small.png)
@@ -50,23 +50,23 @@ Jelen repository minden változása (push, pull request) esetén elindul egy aut
 
 ## [Tesztek](#test)
 
-A Unit tesztekhez JUnit keretrendszert a tesztekhez szükséges mock-ok elkészítséhez [Mockitot](https://developer.android.com/training/testing/unit-testing/local-unit-tests) használunk, a tesztek eredménye html formában is megtekinthető az alábbi mappában: **FalsyQuiz\reports**. A build-hez használ script-ek automatikusan futtatják a teszteket és exportálják az eredményt. A teszrendszer konfigurációja megtalálható az **[app/build.gradle](app/build.gradle)** fájl **testOptions** pontaj alatt, az eredmény a build scriptek futtatásakor a standard kimeneten is megjelenik.
+A Unit tesztekhez JUnit keretrendszert, a tesztekhez szükséges mock-ok elkészítéséhez [Mockitot](https://developer.android.com/training/testing/unit-testing/local-unit-tests) használunk, a tesztek eredménye html formában is megtekinthető az alábbi mappában: **FalsyQuiz\reports**. A build-hez használt script-ek automatikusan futtatják a teszteket és exportálják az eredményt. A tesztrendszer konfigurációja megtalálható az **[app/build.gradle](app/build.gradle)** fájl **testOptions** pontja alatt, az eredmény a build scriptek futtatásakor a standard kimeneten is megjelenik.
 **Az alkalmazás tesztelése még folyamatban van!**
 
 ## [Fejlesztői eszközök](#devTools)
 
 ### [Lint](#lint)
 
-A forrásfájlok elemzéséhez és az esetleges hibás kiszűrésére [Lint](http://tools.android.com/tips/lint)-et használunk, a konfiguráció az [app/build.gradle](app/build.gradle) fájl **lintOptions** pontja alatt található. Az eredmények a build scriptek futtatása után a **FalsyQuiz\app\build\reports\lint-results.html** helyen találhatóak.
+A forrásfájlok elemzéséhez és az esetleges hibák kiszűrésére [Lint](http://tools.android.com/tips/lint)-et használunk, a konfiguráció az [app/build.gradle](app/build.gradle) fájl **lintOptions** pontja alatt található. Az eredmények a build scriptek futtatása után a **FalsyQuiz\app\build\reports\lint-results.html** helyen találhatóak.
 
 ### [Javadoc](#javadoc)
 
-Az használt osztályok és metódusok dokumentációja a **FalsyQuiz/javadoc** mappában html formában találhatóak. A build scriptek automatikusan újragenerálják a dokumentumokat. A főoldal az **index.html** fáj.
+A használt osztályok és metódusok dokumentációja a **FalsyQuiz/javadoc** mappában html formában találhatóak. A build scriptek automatikusan újragenerálják a dokumentumokat. A főoldal az **index.html** fájl.
 **A dokumentálás még folyamatban van!**
 
 ## [Deploy](#deploy)
 
-A build-elt alkalmazás közzététele automatikusan megtörténi a build scriptek segítségével, a telepíthető alkalmazás az alábbi helyen érhető el [vadaszfoto.hu/FalsyQuiz/](http://vadaszfoto.hu/FalsyQuiz/). A közzétételhez szükséges kulcsok a projektmappában találhatóak:
+A build-elt alkalmazás közzététele automatikusan megtörténik a build scriptek segítségével, a telepíthető alkalmazás az alábbi helyen érhető el: [vadaszfoto.hu/FalsyQuiz/](http://vadaszfoto.hu/FalsyQuiz/). A közzétételhez szükséges kulcsok a projektmappában találhatóak:
 [key.ppk](key.ppk), [key_linux.ppk](key.ppk). A közzétételt a **Travis CI** automatizáltan elvégzi minden sikeres build végén.
 
 ## [Telepítés](#install)
@@ -77,7 +77,7 @@ Az alkalmazás a build-elt apk-t a megadott platformra letöltve telepíthető. 
 
 ## [Megjegyzés](#notification)
 
-Az alkalmazás fejlesztése jelenleg folyamatban van, az éppen futó issue-k a projekt [issue board](https://github.com/FalsyQuiz/FalsyQuiz/projects/1)-ján találhatóak. A sugó funkció fejlesztése folyamatban van, az Eredmények részlegesen van megvalósítva.
+Az alkalmazás fejlesztése jelenleg folyamatban van, az éppen futó issue-k a projekt [issue board](https://github.com/FalsyQuiz/FalsyQuiz/projects/1)-ján találhatóak. A súgó funkció fejlesztése folyamatban van, az Eredmények részlegesen van megvalósítva.
 
 ## [Ismert bug-ok](#bugs)
 
