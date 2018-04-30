@@ -197,6 +197,97 @@ public class QuestionInitializer {
                 "2000", "2004", "2008" ,
                 "Ezek közül egyik sem", Question.OPTION_C,
                 false));
+
+        defaultQuestions.add(new Question((Long )null,
+                "Alapesetben milyen típusú visszatérési értékkel rendelkezik a C++ main függvénye?",
+                "int", "char",
+                "void", "float",
+                Question.OPTION_A, false));
+        defaultQuestions.add(new Question((Long )null,
+
+                "A Java nyelv használatával hogyan kaphatjuk meg egyszerűen 25-nek a hatodik hatványát?",
+                "Integer.pow(6, 25)", "Math.power(25, 6)",
+                "Math.pow(6, 25)", "Math.pow(25, 6)",
+                Question.OPTION_D, false));
+
+        defaultQuestions.add(new Question((Long )null,
+                "Mennyi a QR-felbontás műveletigénye?",
+                "3*n*n + O(n)", "2*n*n*n + O(n*n)",
+                "4*n*n*n + O(n*n)", "n*n",
+                Question.OPTION_B, false));
+
+        defaultQuestions.add(new Question((Long )null,
+                "Minek a rövidítése a mutex?",
+                "mutant exception", "mutual execution",
+                "mutual exclusion", "mutató exportálása",
+                Question.OPTION_C, false));
+
+        defaultQuestions.add(new Question((Long )null,
+                "Assembly nyelvben melyik paranccsal ugorhatunk a kód egy másik részére?",
+                "jmp", "jump",
+                "gt", "goto",
+                Question.OPTION_A, false));
+
+        defaultQuestions.add(new Question((Long )null,
+                "Melyik algoritmussal határozhatunk meg egy minimális súlyú feszítőerdőt?",
+                "Kruskal-algoritmus", "Dijkstra-algoritmus",
+                "Bellman-Ford algoritmus", "Floyd-Warshall algoritmus",
+                Question.OPTION_A, false));
+
+        defaultQuestions.add(new Question((Long )null,
+                "Hány darab módszert ismerünk a bináris fák bejárására?",
+                "2", "1",
+                "4", "3",
+                Question.OPTION_C, false));
+
+        defaultQuestions.add(new Question((Long )null,
+                "Hány darab oszlopból áll egy 5-változós formula igazságtáblája?",
+                "10", "6",
+                "11", "5",
+                Question.OPTION_B, false));
+
+        defaultQuestions.add(new Question((Long )null,
+                "Melyik bonyolultsági osztályba tartozik a FÖLDRAJZI JÁTÉK probléma?",
+                "P-beli", "PSPACE-teljes",
+                "NP-teljes", "coNP-teljes",
+                Question.OPTION_B, false));
+
+        defaultQuestions.add(new Question((Long )null,
+                "Mi a Déli Tömb legnépszerűbb előadótermének neve?",
+                "Bólyai János terem", "Bólyai József terem",
+                "Bolyai Lyános terem", "Bolyai János terem",
+                Question.OPTION_D, true));
+
+        defaultQuestions.add(new Question((Long )null,
+                "Melyik nem egy Android verzió elnevezése?",
+                "Haribo", "KitKat",
+                "Oreo", "Jelly Bean",
+                Question.OPTION_A, false));
+
+        defaultQuestions.add(new Question((Long )null,
+                "Az alábbiak közül melyik a Java nyelv egy kulcsszava?",
+                "explicit", "register",
+                "transient", "virtual",
+                Question.OPTION_C, true));
+
+        defaultQuestions.add(new Question((Long )null,
+                "Az alábbiak közül melyik a C++ nyelv egy kulcsszava?",
+                "throws", "interface",
+                "super", "explicit",
+                Question.OPTION_D, true));
+
+        defaultQuestions.add(new Question((Long )null,
+                "Melyik paranccsal fordíthatunk le a parancssorban egy .java fájlt?",
+                "java", "javac",
+                "jcompile", "jar",
+                Question.OPTION_B, false));
+
+        defaultQuestions.add(new Question((Long )null,
+                "Mi lesz az output az alábbi Java kód lefuttatása során? public class Divide\n" +
+                        " { public static void main(String[] args) {System.out.println(5/3);} }",
+                "1", "",
+                "2", "1.6666666",
+                Question.OPTION_A, false));
     }
 
     /**
