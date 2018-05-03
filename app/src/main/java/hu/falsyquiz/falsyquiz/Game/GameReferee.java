@@ -9,6 +9,7 @@ import hu.falsyquiz.falsyquiz.DataPersister.Entities.Question;
 import hu.falsyquiz.falsyquiz.DataPersister.Entities.InfoTextMessage;
 import hu.falsyquiz.falsyquiz.R;
 import lombok.Getter;
+import lombok.Setter;
 
 /**
  * The class that plays the game.
@@ -44,11 +45,14 @@ public class GameReferee implements Timer.TimerListener {
     private GameRefereeListener listener;
 
     private List<Question> questions;
+    @Setter
     private Question actualQuestion;
 
     @Getter
+    @Setter
     private Game game;
 
+    @Setter
     private Timer timer;
 
     public GameReferee(GameRefereeListener listener, List<Question> questions) {
