@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Random;
 import hu.falsyquiz.falsyquiz.Activities.AbstractActivity;
 import hu.falsyquiz.falsyquiz.R;
+import lombok.Getter;
 
 
 /**
@@ -17,8 +18,11 @@ public class InfoTextMessage {
         AbstractActivity getActivity();
     }
 
+    @Getter
     private static List<String> correctAnswerMessages;
+    @Getter
     private static List<String> wrongAnswerMessages;
+    @Getter
     private static List<String> phoneCallMessages;
     private static Random rnd;
     private static MessageListener messageListener;

@@ -1,10 +1,7 @@
 package hu.falsyquiz.falsyquiz.Actions;
 
 import android.content.Context;
-import android.net.wifi.p2p.WifiP2pManager;
-
 import java.util.Random;
-
 import hu.falsyquiz.falsyquiz.Application.BaseApplication;
 import hu.falsyquiz.falsyquiz.R;
 import hu.falsyquiz.falsyquiz.Tools.SongPlayer;
