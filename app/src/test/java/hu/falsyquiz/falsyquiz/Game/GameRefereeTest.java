@@ -120,19 +120,19 @@ public class GameRefereeTest {
     }
 
     @Test
-    public void usedSurpriseHelp() throws Exception {
+    public void testUsedSurpriseHelp() throws Exception {
         gameReferee.usedSurpriseHelp();
         assertEquals(OK, game.getUsedSurprise());
     }
 
     @Test
-    public void usedFifty() throws Exception {
+    public void testUsedFifty() throws Exception {
         gameReferee.usedFifty();
         assertEquals(OK, game.getUsedFifty());
     }
 
     @Test
-    public void endCheckLives() throws Exception {
+    public void testEndCheckLives() throws Exception {
         gameReferee.end();
         assertEquals(2, game.getLives());
     }

@@ -12,13 +12,13 @@ import static org.junit.Assert.assertEquals;
 public class QuestionInitializerTest {
 
     @Test
-    public void initDefaultQuestions() throws Exception {
+    public void testInitDefaultQuestions() throws Exception {
         QuestionInitializer.initDefaultQuestions();
         assertEquals(45, QuestionInitializer.getDefaultQuestions().size() );
     }
 
     @Test
-    public void initDefaultQuestionsCheckFirst() throws Exception {
+    public void testInitDefaultQuestionsCheckFirst() throws Exception {
         QuestionInitializer.initDefaultQuestions();
         Question expectedQuestion = new Question((Long) null,
                 "Legyen X és Y független azonos eloszlású valószínűségi változó, X~N(5,9)," +
@@ -30,7 +30,7 @@ public class QuestionInitializerTest {
     }
 
     @Test
-    public void initDefaultQuestionsCheckLast() throws Exception {
+    public void testInitDefaultQuestionsCheckLast() throws Exception {
         QuestionInitializer.initDefaultQuestions();
         Question expectedQuestion = new Question((Long )null,
                 "Mi lesz az output az alábbi Java kód lefuttatása során? public class Divide\n" +
