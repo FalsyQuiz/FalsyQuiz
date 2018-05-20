@@ -38,9 +38,9 @@ Az alkalmazás által támogatott Android verziók:
 
 ## [Build](#build)
 
-Az alkalmazás buildeléséhez legalább **API level 23 Android sdk** és **Java SE 8 JDK** szükséges. A szükséges konfigurációk az **[app/build.gradle](app/build.gradle)** fájlban találhatóak. A build előtt **Windows** operációs rendszer esetén szükséges egy saját környezeti változó létrehozása **JAVA_HOME** néven, értéke pedig a Java 8 JDK bináris könyvtárának elérési útvonala.
+Az alkalmazás buildeléséhez legalább **API level 22 Android sdk** és **Java SE 8 JDK** szükséges. A szükséges konfigurációk az **[app/build.gradle](app/build.gradle)** fájlban találhatóak. A build előtt **Windows** operációs rendszer esetén szükséges egy saját környezeti változó létrehozása **JAVA_HOME** néven, értéke pedig a Java 8 JDK bináris könyvtárának elérési útvonala.
 
-A szükséges beállítások elvégzése után Windows operációs rendszer esetén az [auto_deploy_win.ps1](auto_deploy_win.ps1), Linux és Mac operációs rendszer esetén az [auto_build_linux.sh](auto_build_linux.sh) script használható. A build-elt alkalmazás a **FalsyQuiz\app\build\outputs\apk\debug\app-debug.apk** útvonalon érhető el. Az [auto_deploy_linux.sh](auto_deploy_linux.sh) egy egyszerűsített script a Travis CI számára.
+A szükséges beállítások elvégzése után Windows operációs rendszer esetén az [auto_deploy_win.ps1](auto_deploy_win.ps1), Linux és Mac operációs rendszer esetén az [auto_build_linux.sh](auto_build_linux.sh) script használható. A build-elt alkalmazás a **FalsyQuiz\app\build\outputs\apk\debug\app-debug.apk** útvonalon érhető el. Az [auto_deploy_linux.sh](auto_deploy_linux.sh) egy egyszerűsített script a Travis CI számára. Windows operációs redszer esetén a build script működéséhez pscp telepítése szükséges ezt a legegyszerűbben a Putty telepítésével tehetjük meg.
 
 Az alkalmazás build-eléséhez az [Android Studio 3.1](https://developer.android.com/studio/)-t ajánljuk!
 
