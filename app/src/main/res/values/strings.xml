@@ -1,3 +1,36 @@
 <resources>
-    <string name="app_name">FalsyQuiz</string>
+    <string name="app_name">Falsy Quiz</string>
+    <string name="mainMenuActivity_startQuizButton" type="id">Új játék</string>
+    <string name="mainMenuActivity_resultButton">Eredmények</string>
+    <string name="mainMenuActivity_helpButton">Súgó</string>
+    <string name="questionActivity_timeLeft_text_defaultValue">--</string>
+    <string name="questionActivity_timeIsOver_text">OVER</string>
+    <string name="questionActivity_bonusQuestion_text">BÓNUSZKÉRDÉS!</string>
+    <string name="questionActivity_bonusLife_text">+1 ÉLET</string>
+    <string name="gameOverActivity_failed_text">Sajnáljuk, ez most nem jött össze!! :(</string>
+    <string name="gameOverActivity_percentageText">Annak a valószínűsége, hogy sikeresen teljesíted a PTI szakot: </string>
+    <string name="gameOverActivity_win_text">Gratulálunk!! :)</string>
+    <string name="permissionDeniedActivity_permissionDenied_text">FalsyQuiz needs permissions to work!</string>
+    <string name="gameCard_looseText">Vesztett :(</string>
+    <string name="gameCard_winText">Nyert :)</string>
+
+    <string-array name="correctAnswer_text_array">
+        <item>Helyes válasz!</item>
+        <item>Szép volt!</item>
+        <item>Hajrá, csak így tovább!</item>
+    </string-array>
+
+    <string-array name="wrongAnswer_text_array">
+        <item>Rossz válasz!</item>
+        <item>Ezt azért illene tudni...</item>
+        <item>Ej, ej, ebből így nem lesz diploma!</item>
+    </string-array>
+
+    <string-array name="phoneCall_text_array">
+        <item>Biztos hogy ez a jó válasz!</item>
+        <item>Fogalmam sincs, de azért tippelek neked egyet.</item>
+        <item>Talán ez a jó válasz, de lehet hogy nem.</item>
+        <item>Ez nagyon könnyű! Ezt hogy nem tudtad?</item>
+    </string-array>
+
 </resources>

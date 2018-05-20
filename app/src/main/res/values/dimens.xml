@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="mainMenuActivity_logo_width">100dp</dimen>
+    <dimen name="mainMenuActivity_logo_heigth">100dp</dimen>
+    <dimen name="mainMenuActivity_logo_topMargin">100dp</dimen>
+    <dimen name="navHeader_logo_width">40dp</dimen>
+    <dimen name="navHeader_logo_height">40dp</dimen>
+    <dimen name="OptionButtonMargin">3dp</dimen>
+    <dimen name="gameOverActivity_resultText_size">25dp</dimen>
+    <dimen name="gameOverActivity_resultText_marginAll">15dp</dimen>
+    <dimen name="gameOverActivity_numOfQuestions_size">15dp</dimen>
+    <dimen name="gameOverActivity_percentageText">15dp</dimen>
+    <dimen name="gameOverActivity_percentageText_topMargin">20dp</dimen>
+    <dimen name="gameOverActivity_percentageText_leftMargin">40dp</dimen>
+    <dimen name="gameOverActivity_picture_topMargin">20dp</dimen>
+    <dimen name="questionActivity_questionText_bottomMargin">40dp</dimen>
+    <dimen name="splashActivity_logo_size">200dp</dimen>
+    <dimen name="codeCard_cornerRadius">20dp</dimen>
+    <dimen name="gameCard_margin_All">15dp</dimen>
+    <dimen name="gameCard_paddingAll">10dp</dimen>
+</resources>

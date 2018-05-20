@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="hu.falsyquiz.falsyquiz.DataPersister.Entities.Managers.DataManagerTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2018-04-29T21:57:34" hostname="DESKTOP-GBLJLQR" time="0.049">
+  <properties/>
+  <testcase name="testDeleteAllQuestions_dataManagerShouldNotContainAnyQuestion" classname="hu.falsyquiz.falsyquiz.DataPersister.Entities.Managers.DataManagerTest" time="0.031"/>
+  <testcase name="testCreateQuestion_managerShouldContainOneQuestion" classname="hu.falsyquiz.falsyquiz.DataPersister.Entities.Managers.DataManagerTest" time="0.002"/>
+  <testcase name="testDeleteQuestion_managerShouldContainZeroQuestions" classname="hu.falsyquiz.falsyquiz.DataPersister.Entities.Managers.DataManagerTest" time="0.006"/>
+  <testcase name="testCreateGame_dataManagerShouldContainOneGame" classname="hu.falsyquiz.falsyquiz.DataPersister.Entities.Managers.DataManagerTest" time="0.002"/>
+  <testcase name="testUpdateGame_dataManagerShouldContainUpdatedGame" classname="hu.falsyquiz.falsyquiz.DataPersister.Entities.Managers.DataManagerTest" time="0.002"/>
+  <testcase name="testUpdateQuestion_questionShouldBeUpdated" classname="hu.falsyquiz.falsyquiz.DataPersister.Entities.Managers.DataManagerTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

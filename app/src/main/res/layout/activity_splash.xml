@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="hu.falsyquiz.falsyquiz.Activities.SplashActivity">
+
+    <ImageView
+        android:id="@+id/splashActivity_logo"
+        android:src="@drawable/web_hi_res_512"
+        android:layout_width="@dimen/splashActivity_logo_size"
+        android:layout_height="@dimen/splashActivity_logo_size"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"/>
+
+    <ProgressBar
+        android:id="@+id/splashScreenIndeterminateProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/splashActivity_logo" />
+
+</RelativeLayout>

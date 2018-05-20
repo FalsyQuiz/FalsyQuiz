@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="hu.falsyquiz.falsyquiz.Activities.QuestionActivity" >
+
+    <RelativeLayout
+        android:id="@+id/questionActivity_helpPanel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:id="@+id/questionActivity_callButton"
+            android:src="@mipmap/ic_call_black_48dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:background="@null"/>
+
+        <ImageButton
+            android:id="@+id/questionActivity_surpriseButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:src="@mipmap/ic_insert_emoticon_black_48dp"
+            android:background="@null"/>
+
+        <ImageButton
+            android:id="@+id/questionActivity_fiftyButton"
+            android:src="@mipmap/ic_shortcut_5050"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:background="@null"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/questionActivity_timeLeft_text"
+        android:text="@string/questionActivity_timeLeft_text_defaultValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/questionActivity_helpPanel" />
+
+    <TextView
+        android:id="@+id/questionActivity_livesText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/questionActivity_timeLeft_text" />
+
+    <TextView
+        android:id="@+id/questionActivity_questionText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:fontFamily="@font/bitter_regular"
+        android:textSize="16dp"
+        android:layout_marginBottom="@dimen/questionActivity_questionText_bottomMargin"/>
+
+    <TextView
+        android:id="@+id/questionActivity_infoText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_above="@id/questionActivity_buttonsArea"
+        android:fontFamily="@font/bitter_regular" />
+
+    <TableLayout
+        android:id="@+id/questionActivity_buttonsArea"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:stretchColumns="*">
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <Button
+            android:id="@+id/questionActivity_optionA_button"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_margin="@dimen/OptionButtonMargin"
+            android:fontFamily="@font/bitter_regular"
+            android:background="@drawable/answer_button" />
+
+        <Button
+            android:id="@+id/questionActivity_optionB_button"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_margin="@dimen/OptionButtonMargin"
+            android:fontFamily="@font/bitter_regular"
+            android:background="@drawable/answer_button" />
+
+    </TableRow>
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <Button
+            android:id="@+id/questionActivity_optionC_button"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_margin="@dimen/OptionButtonMargin"
+            android:fontFamily="@font/bitter_regular"
+            android:background="@drawable/answer_button" />
+
+        <Button
+            android:id="@+id/questionActivity_optionD_button"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:fontFamily="@font/bitter_regular"
+            android:background="@drawable/answer_button"
+            android:layout_margin="@dimen/OptionButtonMargin"  />
+    </TableRow>
+    </TableLayout>
+
+</RelativeLayout>

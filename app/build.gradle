@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'org.greenrobot.greendao'
 
 android {
     compileSdkVersion 26
@@ -9,19 +10,53 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    testOptions {
+
+        unitTests.returnDefaultValues = true
+
+        unitTests.all {
+
+            reports.junitXml.destination = file("$rootDir/reports/test_results/app")
+            reports.html.destination = file("$rootDir/reports/test_results/app")
+
+            testLogging {
+                events "passed", "skipped", "failed", "standardOut", "standardError"
+                outputs.upToDateWhen { false }
+                showStandardStreams = true
+            }
+        }
+    }
+
+
+    lintOptions {
+        abortOnError false
+        ignoreWarnings false
+    }
+
+    task javadoc(type: Javadoc) {
+        source = android.sourceSets.main.java.srcDirs
+        classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+        destinationDir = file("../javadoc/")
+        failOnError false
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     testImplementation 'junit:junit:4.12'
+    testImplementation 'org.mockito:mockito-core:1.10.19'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
@@ -49,4 +84,16 @@ dependencies {
     //Stetho
 
     compile 'com.facebook.stetho:stetho:1.5.0'
+
+    //Navigation drawer
+
+    implementation 'com.android.support:design:26.1.0'
+
+    //Recycler view
+
+    implementation 'com.android.support:recyclerview-v7:26.1.0'
+
+    //Card view
+
+    implementation 'com.android.support:cardview-v7:26.1.0'
 }

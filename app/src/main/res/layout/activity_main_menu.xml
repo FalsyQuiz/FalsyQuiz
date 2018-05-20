@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <!-- Layout to contain contents of main body of screen (drawer will slide over this) -->
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="hu.falsyquiz.falsyquiz.Activities.MainMenuActivity">
+
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
+
+        <ImageView
+                android:id="@+id/mainMenuActivity_applicationImage"
+                android:layout_width="@dimen/mainMenuActivity_logo_width"
+                android:layout_height="@dimen/mainMenuActivity_logo_heigth"
+                android:src="@mipmap/launcher"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/mainMenuActivity_logo_topMargin"/>
+        <TextView android:id="@+id/mainMenuActivity_applicationTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="50sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:shadowColor="@color/colorPrimary"
+            android:shadowDx="-4"
+            android:shadowDy="-4"
+            android:shadowRadius="2"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="@string/app_name"
+            android:fontFamily="@font/sacramento_regular" />
+    </RelativeLayout>
+
+    <!-- Container for contents of drawer - use NavigationView to make configuration easier -->
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:menu="@menu/drawer_view"
+        app:headerLayout="@layout/nav_header"/>
+
+</android.support.v4.widget.DrawerLayout>
+
+

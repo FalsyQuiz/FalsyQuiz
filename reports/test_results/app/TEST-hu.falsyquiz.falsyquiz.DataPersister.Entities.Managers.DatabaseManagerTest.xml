@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="hu.falsyquiz.falsyquiz.DataPersister.Entities.Managers.DatabaseManagerTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2018-04-29T21:57:34" hostname="DESKTOP-GBLJLQR" time="0.033">
+  <properties/>
+  <testcase name="testFindAllQuestionsShouldReturnEmptyList" classname="hu.falsyquiz.falsyquiz.DataPersister.Entities.Managers.DatabaseManagerTest" time="0.018"/>
+  <testcase name="testFindAllGamesShouldReturnListWithOneGame" classname="hu.falsyquiz.falsyquiz.DataPersister.Entities.Managers.DatabaseManagerTest" time="0.003"/>
+  <testcase name="testFindAllQuestionsShouldReturnListWithOneQuestion" classname="hu.falsyquiz.falsyquiz.DataPersister.Entities.Managers.DatabaseManagerTest" time="0.006"/>
+  <testcase name="testFindAllGamesShouldReturnEmptyList" classname="hu.falsyquiz.falsyquiz.DataPersister.Entities.Managers.DatabaseManagerTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
