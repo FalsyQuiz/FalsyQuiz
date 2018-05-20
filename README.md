@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/FalsyQuiz/FalsyQuiz.svg?branch=develop)](https://travis-ci.org/FalsyQuiz/FalsyQuiz)
+[![Build Status](https://travis-ci.org/FalsyQuiz/FalsyQuiz.svg?branch=master)](https://travis-ci.org/FalsyQuiz/FalsyQuiz)
 
 # FalsyQuiz
 
